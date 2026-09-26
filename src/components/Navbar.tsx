@@ -47,8 +47,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-brand-espresso/95 backdrop-blur-md py-3 border-b border-brand-gold/20 shadow-luxury'
-          : 'bg-gradient-to-b from-brand-dark/90 via-brand-dark/40 to-transparent py-5'
+          ? 'bg-brand-espresso/95 backdrop-blur-md py-4 border-b border-brand-gold/20 shadow-luxury'
+          : 'bg-gradient-to-b from-brand-dark/90 via-brand-dark/40 to-transparent py-7'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,9 +58,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
           <a
             href="/"
             onClick={(e) => handleNavClick('/', e)}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="flex items-center gap-4 group cursor-pointer"
           >
-            <div className="w-11 h-11 rounded-full p-0.5 bg-gradient-to-br from-brand-goldLight via-brand-gold to-brand-roast shadow-md group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 rounded-full p-[3px] bg-gradient-to-br from-brand-goldLight via-brand-gold to-brand-roast shadow-lg group-hover:scale-105 transition-transform duration-300">
               <img
                 src="/assets/logo.jpeg"
                 alt="NuttyBitez Logo"
@@ -68,10 +68,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-gold-gradient leading-none">
+              <span className="font-serif text-3xl font-bold tracking-tight text-gold-gradient leading-none">
                 NuttyBitez
               </span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-brand-goldLight font-medium mt-1">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-brand-goldLight font-medium mt-1.5">
                 Artisanal Dragées
               </span>
             </div>
@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
 
       {/* Mobile Slide-out Overlay Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[65px] bg-brand-espresso/98 border-b border-brand-gold/30 backdrop-blur-xl px-6 py-8 shadow-2xl animate-fadeIn">
+        <div className="md:hidden fixed inset-x-0 top-[88px] bg-brand-espresso/98 border-b border-brand-gold/30 backdrop-blur-xl px-6 py-8 shadow-2xl animate-fadeIn">
           <div className="flex flex-col gap-6 text-center">
             {navLinks.map((link) => (
               <a

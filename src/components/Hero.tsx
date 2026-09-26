@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Editorial Copy */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -43,13 +43,6 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.9, ease: 'easeOut' }}
             className="lg:col-span-7 space-y-6 text-center lg:text-left"
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/30 bg-brand-espresso/80 backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-brand-goldLight" />
-              <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-brand-goldLight">
-                Premium Indian Almond Dragées & Flavoured Nuts
-              </span>
-            </div>
 
             {/* Main Headline */}
             <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-brand-cream tracking-tight leading-[0.95]">
@@ -113,13 +106,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="lg:col-span-5 relative"
           >
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              
+
               {/* Gold Rim Backdrop Card */}
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-espresso to-brand-roast rounded-3xl transform rotate-3 scale-98 border border-brand-gold/30 shadow-luxury" />
-              
+
               {/* Product Hero Container */}
               <div className="relative bg-brand-espresso/90 border border-brand-gold/40 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-2xl overflow-hidden group">
-                
+
                 {/* Product Packaging Image */}
                 <div className="relative z-10 aspect-square w-full rounded-2xl overflow-hidden shadow-inner bg-brand-dark">
                   <img
@@ -127,7 +120,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     alt="NuttyBitez Dragée Collection Jars"
                     className="w-full h-full object-cover img-zoom"
                   />
-                  
+
                   {/* Floating Flavour Badges */}
                   <div className="absolute top-3 right-3 px-3 py-1 bg-brand-dark/90 border border-brand-gold/40 rounded-full text-[10px] font-semibold text-brand-goldLight tracking-wider uppercase backdrop-blur-md">
                     4 Signature Flavours

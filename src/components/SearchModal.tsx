@@ -24,7 +24,7 @@ export const SearchModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-brand-dark/95 backdrop-blur-xl p-4 sm:p-6 lg:p-8">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-brand-dark/95 backdrop-blur-xl p-4 sm:p-6 lg:p-8" data-lenis-prevent>
         <div className="max-w-4xl mx-auto">
           
           {/* Header */}

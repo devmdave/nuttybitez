@@ -67,6 +67,7 @@ export const CartDrawer: React.FC = () => {
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="w-screen max-w-md bg-brand-espresso border-l border-brand-gold/30 text-brand-cream shadow-2xl flex flex-col justify-between relative"
+            data-lenis-prevent
           >
             {/* Header */}
             <div className="p-6 border-b border-brand-gold/20 flex items-center justify-between">

@@ -1,3 +1,5 @@
+@import 'lenis/dist/lenis.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +11,11 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  h1, h2, h3, h4, .font-serif {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
     font-family: 'Cormorant Garamond', Georgia, serif;
   }
 }
@@ -63,13 +69,16 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #1A0E0A;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #3A2115;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #C79A4A;
 }
@@ -78,6 +87,52 @@
 .img-zoom {
   transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 .img-zoom:hover {
   transform: scale(1.04);
+}
+
+/* 3D Digital Flavour Book Custom Styling */
+.book-container-shadow {
+  box-shadow:
+    0 30px 60px -12px rgba(0, 0, 0, 0.75),
+    0 18px 36px -18px rgba(0, 0, 0, 0.85),
+    0 0 50px rgba(199, 154, 74, 0.15);
+}
+
+.book-spine-shadow {
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.12) 3%,
+      rgba(255, 255, 255, 0.08) 6%,
+      rgba(0, 0, 0, 0.0) 12%,
+      rgba(0, 0, 0, 0.0) 88%,
+      rgba(255, 255, 255, 0.08) 94%,
+      rgba(0, 0, 0, 0.12) 97%,
+      rgba(0, 0, 0, 0.35) 100%);
+}
+
+.paper-inner-crease-left {
+  background: linear-gradient(to left, rgba(40, 20, 10, 0.22) 0%, rgba(40, 20, 10, 0.05) 4%, transparent 12%);
+}
+
+.paper-inner-crease-right {
+  background: linear-gradient(to right, rgba(40, 20, 10, 0.22) 0%, rgba(40, 20, 10, 0.05) 4%, transparent 12%);
+}
+
+.stacked-pages-bottom {
+  box-shadow:
+    0 4px 0 #E3D7C5,
+    0 8px 0 #D5C7B0,
+    0 12px 0 #C7B59B,
+    0 16px 20px rgba(0, 0, 0, 0.5);
+}
+
+.gold-foil-emboss {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 0 10px rgba(230, 195, 120, 0.5);
+}
+
+.stPageFlip {
+  margin: 0 auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
