@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-brand-espresso/95 backdrop-blur-md py-4 border-b border-brand-gold/20 shadow-luxury'
+          ? 'bg-brand-espresso/95 backdrop-blur-md py-4 shadow-luxury'
           : 'bg-gradient-to-b from-brand-dark/90 via-brand-dark/40 to-transparent py-7'
       }`}
     >
@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
                 NuttyBitez
               </span>
               <span className="text-[10px] uppercase tracking-[0.28em] text-brand-goldLight font-medium mt-1.5">
-                Artisanal Dragées
+                PREMIUM MUNCHING FOREVER
               </span>
             </div>
           </a>

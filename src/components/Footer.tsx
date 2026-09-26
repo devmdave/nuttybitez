@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   NuttyBitez
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.25em] text-brand-goldLight">
-                  Premium Almond Dragées
+                  PREMIUM MUNCHING FOREVER
                 </span>
               </div>
             </div>

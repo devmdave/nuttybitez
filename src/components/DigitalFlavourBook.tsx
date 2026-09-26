@@ -305,7 +305,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Cover Top Header */}
                     <div className="text-center pt-6 space-y-2">
                       <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold text-brand-goldLight gold-foil-emboss">
-                        Artisanal Dragée Collection
+                        PREMIUM MUNCHING FOREVER
                       </span>
                       <div className="w-12 h-[1px] bg-brand-gold/60 mx-auto" />
                     </div>
@@ -341,7 +341,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <ArrowRight className="w-4 h-4" />
                       </div>
                       <p className="text-[10px] uppercase tracking-widest text-brand-cream/50">
-                        Handcrafted Premium Gourmet Dragées
+                        PREMIUM MUNCHING FOREVER
                       </p>
                     </div>
                   </div>

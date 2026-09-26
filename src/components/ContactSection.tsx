@@ -34,12 +34,12 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           {/* LEFT SIDE: Architectural Arch Contact Showcase (Inspired by Editorial Reference Layout) */}
           <div className="lg:col-span-5 flex flex-col items-center">
             
-            {/* Arched Luxury Frame */}
-            <div className="w-full max-w-md bg-brand-espresso/80 border border-brand-gold/30 rounded-t-[140px] sm:rounded-t-[160px] p-8 sm:p-12 shadow-2xl relative flex flex-col items-center text-center backdrop-blur-md">
+            {/* Arched Luxury Frame (True Continuous Domed Arch Top) */}
+            <div className="w-full max-w-md bg-brand-espresso/80 border border-brand-gold/30 rounded-t-full rounded-b-3xl pt-14 sm:pt-16 px-8 sm:px-12 pb-10 shadow-2xl relative flex flex-col items-center text-center backdrop-blur-md">
               
-              {/* Decorative Star Sparkle on Arch Corner */}
-              <div className="absolute top-8 right-8 text-brand-goldLight opacity-80 animate-pulse">
-                <Sparkles className="w-6 h-6" />
+              {/* Decorative Star Sparkle on Arch Curve */}
+              <div className="absolute top-10 right-8 sm:right-10 text-brand-goldLight opacity-80 animate-pulse">
+                <Sparkles className="w-5 h-5" />
               </div>
 
               {/* Brand Emblem Logo Seal */}
@@ -53,7 +53,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
               {/* Sub-brand Title */}
               <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-gold block mb-2">
-                NUTTYBITEZ • ARTISANAL DRAGÉES
+                NUTTYBITEZ • PREMIUM MUNCHING FOREVER
               </span>
 
               {/* Prominent Editorial Heading */}

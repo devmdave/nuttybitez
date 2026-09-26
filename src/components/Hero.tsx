@@ -36,13 +36,19 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-          {/* Left Editorial Copy */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeOut' }}
             className="lg:col-span-7 space-y-6 text-center lg:text-left"
           >
+            {/* Tagline Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-gold/30 bg-brand-espresso/80 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-brand-goldLight" />
+              <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-brand-goldLight">
+                PREMIUM MUNCHING FOREVER
+              </span>
+            </div>
 
             {/* Main Headline */}
             <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-brand-cream tracking-tight leading-[0.95]">

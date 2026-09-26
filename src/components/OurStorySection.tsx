@@ -37,7 +37,7 @@ export const OurStorySection: React.FC<OurStorySectionProps> = ({ onNavigate }) 
                   "Four Flavours. Endless Indulgence."
                 </p>
                 <span className="text-[10px] uppercase tracking-widest text-brand-cream/60 mt-1 block">
-                  Artisanal Dragée Collection
+                  PREMIUM MUNCHING FOREVER
                 </span>
               </div>
             </div>
