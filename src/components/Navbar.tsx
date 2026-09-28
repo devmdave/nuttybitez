@@ -26,7 +26,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
   const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'Our Products', path: '/#flavour-book' },
-    { label: 'Our Story', path: '/our-story' },
     { label: 'Contact', path: '/contact' },
   ];
 

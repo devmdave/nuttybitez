@@ -11,7 +11,6 @@ import { QuickViewModal } from './components/QuickViewModal';
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
-import { OurStoryPage } from './pages/OurStoryPage';
 import { ContactPage } from './pages/ContactPage';
 
 export const App: React.FC = () => {
@@ -114,9 +113,6 @@ export const App: React.FC = () => {
     if (currentPath.startsWith('/product/')) {
       const slug = currentPath.replace('/product/', '');
       return <ProductDetailPage slug={slug} onNavigate={navigate} />;
-    }
-    if (currentPath === '/our-story') {
-      return <OurStoryPage onNavigate={navigate} />;
     }
     if (currentPath === '/contact') {
       return <ContactPage onNavigate={navigate} />;

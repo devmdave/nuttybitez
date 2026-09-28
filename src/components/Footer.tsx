@@ -70,11 +70,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               <li>
-                <a href="/our-story" onClick={(e) => handleNavClick('/our-story', e)} className="hover:text-brand-gold transition-colors">
-                  Our Story
-                </a>
-              </li>
-              <li>
                 <a href="/contact" onClick={(e) => handleNavClick('/contact', e)} className="hover:text-brand-gold transition-colors">
                   Contact & Bulk Orders
                 </a>

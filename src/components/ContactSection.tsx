@@ -9,7 +9,6 @@ interface FormErrors {
   name?: string;
   phone?: string;
   email?: string;
-  subject?: string;
   message?: string;
 }
 
@@ -19,7 +18,6 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
     name: '',
     email: '',
     phone: '',
-    subject: 'Corporate Gifting',
     message: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -29,7 +27,6 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
     const nameTrimmed = formData.name.trim();
     const emailTrimmed = formData.email.trim();
     const phoneTrimmed = formData.phone.trim();
-    const subjectTrimmed = formData.subject.trim();
     const messageTrimmed = formData.message.trim();
 
     // Name Validation
@@ -58,11 +55,6 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
       newErrors.email = 'Please enter a valid email address.';
     }
 
-    // Subject Validation
-    if (!subjectTrimmed) {
-      newErrors.subject = 'Please select a subject or enquiry type.';
-    }
-
     // Message Validation
     if (!messageTrimmed) {
       newErrors.message = 'Message is required.';
@@ -89,7 +81,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
+    <section id="contact" className="pt-8 pb-16 sm:pt-10 sm:pb-20 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
 
       {/* Ambient Background & Texture */}
       <div className="absolute inset-0 opacity-10 bg-dark-paper pointer-events-none" />
@@ -120,7 +112,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 <button
                   onClick={() => {
                     setSubmitted(false);
-                    setFormData({ name: '', email: '', phone: '', subject: 'Corporate Gifting', message: '' });
+                    setFormData({ name: '', email: '', phone: '', message: '' });
                     setErrors({});
                   }}
                   className="mt-4 px-10 py-3.5 rounded-full text-sm uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient hover:brightness-110 transition-all shadow-md cursor-pointer"
@@ -201,33 +193,6 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                   )}
                 </div>
 
-                {/* Subject Dropdown */}
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
-                    Subject / Enquiry Type *
-                  </label>
-                  <select
-                    value={formData.subject}
-                    onChange={(e) => handleChange('subject', e.target.value)}
-                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/90 border text-base sm:text-lg text-brand-cream focus:outline-none cursor-pointer transition-all ${errors.subject
-                      ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
-                      : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
-                      }`}
-                  >
-                    <option value="Product Enquiry">Product Enquiry</option>
-                    <option value="Bulk Order">Bulk Order</option>
-                    <option value="Corporate Gifting">Festive & Corporate Gifting</option>
-                    <option value="Custom Requirement">Custom Requirement</option>
-                    <option value="General Enquiry">General Enquiry</option>
-                  </select>
-                  {errors.subject && (
-                    <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.subject}</span>
-                    </div>
-                  )}
-                </div>
-
                 {/* Message */}
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
@@ -254,9 +219,9 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4.5 rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
+                  className="w-full h-20 rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
                 >
-                  <Send className="w-5 h-20" />
+                  <Send className="w-5 h-5" />
                   <span>Submit Enquiry</span>
                 </button>
 
