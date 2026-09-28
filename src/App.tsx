@@ -3,7 +3,8 @@ import Lenis from 'lenis';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
+import { BrandLogo } from './components/BrandLogo';
+import { Sidebar } from './components/Sidebar';
 import { CartDrawer } from './components/CartDrawer';
 import { SearchModal } from './components/SearchModal';
 import { QuickViewModal } from './components/QuickViewModal';
@@ -51,6 +52,23 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
+      
+      if (hash.startsWith('/#')) {
+        const targetId = hash.substring(2);
+        setCurrentPath('/');
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            if (lenisRef.current) {
+              lenisRef.current.scrollTo(element);
+            } else {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 100);
+        return;
+      }
+      
       setCurrentPath(hash || '/');
       if (lenisRef.current) {
         lenisRef.current.scrollTo(0, { immediate: true });
@@ -64,6 +82,23 @@ export const App: React.FC = () => {
   }, []);
 
   const navigate = (path: string) => {
+    if (path.startsWith('/#')) {
+      const targetId = path.substring(2);
+      window.location.hash = path;
+      setCurrentPath('/');
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(element);
+          } else {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, 100);
+      return;
+    }
+
     window.location.hash = path;
     setCurrentPath(path);
     if (lenisRef.current) {
@@ -94,13 +129,15 @@ export const App: React.FC = () => {
     <CartProvider>
       <SearchProvider>
         <div className="min-h-screen bg-brand-dark flex flex-col font-sans selection:bg-brand-gold selection:text-brand-dark">
+          <BrandLogo onNavigate={navigate} />
           <Navbar currentPath={currentPath} onNavigate={navigate} />
+          <Sidebar currentPath={currentPath} onNavigate={navigate} />
           
-          <div className="flex-1">
+          <div className="flex-1 transition-all duration-300">
             {renderPage()}
           </div>
 
-          <Footer onNavigate={navigate} />
+
 
           {/* Global Modals & Overlays */}
           <CartDrawer />

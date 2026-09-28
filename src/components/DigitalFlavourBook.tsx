@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import HTMLFlipBook from 'react-pageflip';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronLeft,
@@ -41,7 +41,7 @@ const Page = React.forwardRef<
 >((props, ref) => {
   return (
     <div
-      className={`page relative bg-[#FAF3E8] overflow-hidden select-none border-r border-brand-roast/10 ${props.className || ''}`}
+      className={`page w-full h-full relative bg-[#FAF3E8] overflow-hidden select-none border-r border-brand-roast/10 ${props.className || ''}`}
       ref={ref}
       data-density={props.density || 'soft'}
       style={props.bgStyle}
@@ -52,10 +52,96 @@ const Page = React.forwardRef<
 });
 Page.displayName = 'Page';
 
+
+const Book3D: React.FC<{
+  children: React.ReactNode;
+  currentSpread: number;
+  bookDimensions: { width: number; height: number };
+}> = ({ children, currentSpread, bookDimensions }) => {
+  const pages = React.Children.toArray(children);
+  const sheets = [];
+  for (let i = 0; i < pages.length; i += 2) {
+    sheets.push({
+      front: pages[i],
+      back: pages[i + 1] || null
+    });
+  }
+
+  const isClosed = currentSpread === 0;
+  const isBackClosed = currentSpread === sheets.length;
+  const translateX = isClosed ? '-25%' : isBackClosed ? '25%' : '0%';
+
+  return (
+    <div 
+      className="relative mx-auto transition-transform duration-1000 ease-in-out"
+      style={{
+        width: bookDimensions.width * 2,
+        height: bookDimensions.height,
+        transform: `translateX(${translateX})`,
+        perspective: '3500px',
+        transformStyle: 'preserve-3d',
+      }}
+    >
+      {/* Center Spine Shadow (Only visible when book is open) */}
+      <div 
+        className={`absolute top-0 bottom-0 left-1/2 w-16 -translate-x-1/2 bg-gradient-to-r from-transparent via-black/20 to-transparent z-0 pointer-events-none transition-opacity duration-1000 ${isClosed || isBackClosed ? 'opacity-0' : 'opacity-100'}`} 
+      />
+
+      {sheets.map((sheet, i) => {
+        const isFlipped = i < currentSpread;
+        const zIndex = isFlipped ? 10 + i : 50 - i;
+        
+        return (
+          <div
+            key={i}
+            className="absolute top-0 right-0 h-full"
+            style={{
+              width: '50%',
+              transformOrigin: 'left center',
+              transform: isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)',
+              transition: 'transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1)',
+              zIndex,
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {/* FRONT FACE (Right Page) */}
+            <div 
+              className="absolute inset-0 w-full h-full overflow-hidden rounded-r-xl border-l border-brand-roast/20"
+              style={{
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(0deg)',
+                backgroundColor: '#FAF3E8',
+              }}
+            >
+              {sheet.front}
+              <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/15 to-transparent pointer-events-none" />
+            </div>
+            
+            {/* BACK FACE (Left Page when flipped) */}
+            <div 
+              className="absolute inset-0 w-full h-full overflow-hidden rounded-l-xl border-r border-brand-roast/20"
+              style={{
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)',
+                backgroundColor: '#FAF3E8',
+              }}
+            >
+              {sheet.back}
+              <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/15 to-transparent pointer-events-none" />
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNavigate }) => {
-  const flipBookRef = useRef<any>(null);
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [totalPages, setTotalPages] = useState<number>(15);
+  const [currentSpread, setCurrentSpread] = useState<number>(0);
+  const totalSpreads = 6;
+  const currentPage = currentSpread === 0 ? 0 : currentSpread === 6 ? 11 : currentSpread * 2;
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [bookDimensions, setBookDimensions] = useState({ width: 480, height: 660 });
   const { addToCart, setQuickViewProduct } = useCart();
@@ -131,47 +217,35 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
     }
   }, [soundEnabled]);
 
-  // Handle Page Turn Events
-  const onFlip = useCallback((e: any) => {
-    setCurrentPage(e.data);
-    playPageFlipSound();
-  }, [playPageFlipSound]);
+
 
   // Keyboard Navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!flipBookRef.current) return;
-      const pageFlipInstance = flipBookRef.current.pageFlip();
-      if (!pageFlipInstance) return;
-
-      if (e.key === 'ArrowRight') {
-        pageFlipInstance.flipNext();
-      } else if (e.key === 'ArrowLeft') {
-        pageFlipInstance.flipPrev();
-      }
+      if (e.key === 'ArrowRight') handleNext();
+      else if (e.key === 'ArrowLeft') handlePrev();
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [currentSpread]);
 
   // Jump to specific page
   const turnToPage = (pageIndex: number) => {
-    if (!flipBookRef.current) return;
-    const pageFlipInstance = flipBookRef.current.pageFlip();
-    if (pageFlipInstance) {
-      pageFlipInstance.turnToPage(pageIndex);
-    }
+    let spreadIndex = Math.floor(pageIndex / 2);
+    if (pageIndex === 0) spreadIndex = 0;
+    else if (pageIndex >= 11) spreadIndex = 6;
+    setCurrentSpread(spreadIndex);
   };
 
   const handleNext = () => {
-    if (!flipBookRef.current) return;
-    flipBookRef.current.pageFlip().flipNext();
+    setCurrentSpread(s => Math.min(s + 1, totalSpreads));
+    playPageFlipSound();
   };
 
   const handlePrev = () => {
-    if (!flipBookRef.current) return;
-    flipBookRef.current.pageFlip().flipPrev();
+    setCurrentSpread(s => Math.max(s - 1, 0));
+    playPageFlipSound();
   };
 
   const handleAddToCart = (product: any, e: React.MouseEvent) => {
@@ -260,33 +334,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
               </div>
 
               {/* HTMLFlipBook Engine */}
-              <HTMLFlipBook
-                ref={flipBookRef}
-                width={bookDimensions.width}
-                height={bookDimensions.height}
-                size="fixed"
-                minWidth={300}
-                maxWidth={600}
-                minHeight={400}
-                maxHeight={800}
-                maxShadowOpacity={0.6}
-                showCover={true}
-                mobileScrollSupport={true}
-                clickEventForward={true}
-                useMouseEvents={true}
-                usePortrait={false}
-                startPage={0}
-                drawShadow={true}
-                flippingTime={800}
-                startZIndex={1}
-                autoSize={true}
-                showPageCorners={true}
-                disableFlipByClick={false}
-                swipeDistance={30}
-                onFlip={onFlip}
-                className="mx-auto rounded-lg shadow-2xl"
-                style={{ margin: '0 auto' }}
-              >
+              <Book3D currentSpread={currentSpread} bookDimensions={bookDimensions}>
 
                 {/* ==========================================
                     PAGE 0: FRONT COVER (HARDCOVER)
@@ -348,130 +396,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    PAGE 1: INSIDE COVER / INTRODUCTION (LEFT)
+                    SPREAD 1: PAAN SHOT (LEFT: PAGE 1)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left border-r border-brand-roast/15">
-                  <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
-
-                    {/* Header */}
-                    <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
-                      <span>NUTTYBITEZ • HERITAGE & CRAFT</span>
-                      <span>PAGE 01</span>
-                    </div>
-
-                    {/* Content */}
-                    <div className="space-y-6 my-auto">
-                      <div className="space-y-2">
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-gold">
-                          Welcome Connoisseur
-                        </span>
-                        <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-brand-roast">
-                          The Art of the Gourmet Dragée
-                        </h2>
-                        <div className="w-12 h-[2px] bg-brand-gold" />
-                      </div>
-
-                      <p className="text-sm leading-relaxed text-brand-roast/85 font-sans font-normal">
-                        At NuttyBitez, we transform whole California almonds and Mangalore jumbo cashews into extraordinary culinary experiences. Every dragée is slow-tossed in traditional copper kettles with multi-layered infusions of single-origin cocoa, authentic botanicals, and hand-milled spices.
-                      </p>
-
-                      {/* Craftsmanship Image Frame */}
-                      <div className="relative aspect-[16/9] rounded-xl overflow-hidden shadow-md border border-brand-gold/40 group">
-                        <img
-                          src="/assets/all_packagings.jpeg"
-                          alt="NuttyBitez Craftsmanship"
-                          className="w-full h-full object-cover img-zoom"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-transparent to-transparent" />
-                        <span className="absolute bottom-2 left-3 text-[10px] uppercase font-bold text-brand-cream tracking-widest">
-                          The 5 Signature Masterpieces
-                        </span>
-                      </div>
-
-                      {/* Artisanal Seal */}
-                      <div className="flex items-center gap-3 p-3 rounded-lg bg-brand-roast/5 border border-brand-roast/15">
-                        <Award className="w-8 h-8 text-brand-gold flex-shrink-0" />
-                        <div className="text-xs">
-                          <span className="font-bold text-brand-roast block">100% Artisanal Quality</span>
-                          <span className="text-brand-roast/70 text-[11px]">No artificial preservatives, pure cocoa butter & natural flavours.</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Footer Page Number */}
-                    <div className="pt-4 border-t border-brand-roast/15 text-center text-[10px] uppercase tracking-widest text-brand-roast/60">
-                      Crafted in India • Delivered Worldwide
-                    </div>
-                  </div>
-                </Page>
-
-                {/* ==========================================
-                    PAGE 2: TABLE OF CONTENTS (RIGHT)
-                ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
-
-                    {/* Header */}
-                    <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
-                      <span>TABLE OF CONTENTS</span>
-                      <span>PAGE 02</span>
-                    </div>
-
-                    {/* Directory List */}
-                    <div className="space-y-4 my-auto">
-                      <div className="text-center space-y-1">
-                        <h3 className="font-serif text-2xl font-bold text-brand-roast">Flavour Index</h3>
-                        <p className="text-xs italic font-serif text-brand-roast/70">Select a spread to jump directly</p>
-                      </div>
-
-                      <div className="space-y-2 pt-2">
-                        {[
-                          { title: 'Paan Shot', desc: 'Refreshing Paan & White Chocolate', page: 3, num: '01' },
-                          { title: 'Coffee Tiramisu', desc: 'Espresso & Creamy Tiramisu', page: 5, num: '02' },
-                          { title: 'Choco Crunch', desc: 'Rich Milk Chocolate & Almond', page: 7, num: '03' },
-                          { title: 'Dark Chocolate', desc: '70% Single Origin Cacao', page: 9, num: '04' },
-                          { title: 'Peri Peri Cashew', desc: 'Fiery Birdseye Chili & Cashews', page: 11, num: '05' },
-                          { title: 'The NuttyBitez Ethos', desc: 'Artisanal Promise & Orders', page: 13, num: '06' },
-                        ].map((item) => (
-                          <div
-                            key={item.num}
-                            onClick={() => turnToPage(item.page)}
-                            className="flex items-center justify-between p-3 rounded-lg border border-brand-roast/15 bg-white/50 hover:bg-brand-roast hover:text-brand-cream transition-all duration-300 cursor-pointer group shadow-sm"
-                          >
-                            <div className="flex items-center gap-3">
-                              <span className="font-serif text-sm font-bold text-brand-gold group-hover:text-brand-goldLight">
-                                {item.num}.
-                              </span>
-                              <div>
-                                <span className="font-serif font-bold text-sm block group-hover:text-brand-cream">
-                                  {item.title}
-                                </span>
-                                <span className="text-[11px] text-brand-roast/70 group-hover:text-brand-cream/70">
-                                  {item.desc}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs font-mono font-bold text-brand-roast/60 group-hover:text-brand-gold">
-                              <span>SPREAD #{item.num}</span>
-                              <ChevronRight className="w-3.5 h-3.5" />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Prompt */}
-                    <div className="pt-4 border-t border-brand-roast/15 flex items-center justify-between text-[11px] text-brand-roast/70">
-                      <span>Turn page to begin tasting journey</span>
-                      <BookOpen className="w-4 h-4 text-brand-gold" />
-                    </div>
-                  </div>
-                </Page>
-
-                {/* ==========================================
-                    SPREAD 2: PAAN SHOT (LEFT: PAGE 3)
-                ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
+                <Page density="hard" className="paper-inner-crease-left">
                   <div
                     className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `linear-gradient(to bottom, rgba(26, 41, 17, 0.85), rgba(15, 26, 10, 0.95)), url('${paanShot.images.ingredients}')` }}
@@ -479,7 +406,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
                       <span>FLAVOUR SPREAD • BOTANICAL GREEN</span>
-                      <span>PAGE 03</span>
+                      <span>PAGE 01</span>
                     </div>
 
                     {/* Left Page Photography Hero */}
@@ -521,13 +448,13 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 {/* ==========================================
                     SPREAD 2: PAAN SHOT (RIGHT: PAGE 4)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
+                <Page density="hard" className="paper-inner-crease-right">
                   <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
                       <span>PAAN SHOT DRAGÉE</span>
-                      <span>PAGE 04</span>
+                      <span>PAGE 02</span>
                     </div>
 
                     {/* Right Page Editorial Content */}
@@ -606,9 +533,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 3: COFFEE TIRAMISU (LEFT: PAGE 5)
+                    SPREAD 2: COFFEE TIRAMISU (LEFT: PAGE 3)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
+                <Page density="hard" className="paper-inner-crease-left">
                   <div
                     className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `linear-gradient(to bottom, rgba(36, 21, 15, 0.85), rgba(20, 10, 5, 0.95)), url('/assets/coffee_tiramisu_ingredients.png')` }}
@@ -616,7 +543,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
                       <span>FLAVOUR SPREAD • ESPRESSO TONES</span>
-                      <span>PAGE 05</span>
+                      <span>PAGE 03</span>
                     </div>
 
                     {/* Left Page Photography Hero */}
@@ -656,15 +583,15 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 3: COFFEE TIRAMISU (RIGHT: PAGE 6)
+                    SPREAD 2: COFFEE TIRAMISU (RIGHT: PAGE 4)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
+                <Page density="hard" className="paper-inner-crease-right">
                   <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
                       <span>COFFEE TIRAMISU DRAGÉE</span>
-                      <span>PAGE 06</span>
+                      <span>PAGE 04</span>
                     </div>
 
                     {/* Right Page Content */}
@@ -743,9 +670,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 4: CHOCO CRUNCH (LEFT: PAGE 7)
+                    SPREAD 3: CHOCO CRUNCH (LEFT: PAGE 5)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
+                <Page density="hard" className="paper-inner-crease-left">
                   <div
                     className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `linear-gradient(to bottom, rgba(46, 27, 18, 0.85), rgba(26, 14, 10, 0.95)), url('${chocoCrunch.images.ingredients}')` }}
@@ -753,7 +680,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
                       <span>FLAVOUR SPREAD • MILK CHOCOLATE</span>
-                      <span>PAGE 07</span>
+                      <span>PAGE 05</span>
                     </div>
 
                     {/* Left Page Photography Hero */}
@@ -793,15 +720,15 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 4: CHOCO CRUNCH (RIGHT: PAGE 8)
+                    SPREAD 3: CHOCO CRUNCH (RIGHT: PAGE 6)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
+                <Page density="hard" className="paper-inner-crease-right">
                   <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
                       <span>CHOCO CRUNCH DRAGÉE</span>
-                      <span>PAGE 08</span>
+                      <span>PAGE 06</span>
                     </div>
 
                     {/* Content */}
@@ -880,9 +807,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 5: DARK CHOCOLATE (LEFT: PAGE 9)
+                    SPREAD 4: DARK CHOCOLATE (LEFT: PAGE 7)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
+                <Page density="hard" className="paper-inner-crease-left">
                   <div
                     className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `linear-gradient(to bottom, rgba(26, 14, 10, 0.9), rgba(15, 8, 5, 0.95)), url('/assets/dark_chocolate_ingredients.png')` }}
@@ -890,7 +817,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
                       <span>FLAVOUR SPREAD • 70% DARK CACAO</span>
-                      <span>PAGE 09</span>
+                      <span>PAGE 07</span>
                     </div>
 
                     {/* Left Page Photography Hero */}
@@ -930,15 +857,15 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 5: DARK CHOCOLATE (RIGHT: PAGE 10)
+                    SPREAD 4: DARK CHOCOLATE (RIGHT: PAGE 8)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
+                <Page density="hard" className="paper-inner-crease-right">
                   <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
                       <span>DARK CHOCOLATE DRAGÉE</span>
-                      <span>PAGE 10</span>
+                      <span>PAGE 08</span>
                     </div>
 
                     {/* Content */}
@@ -1017,9 +944,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 6: PERI PERI CASHEW (LEFT: PAGE 11)
+                    SPREAD 5: PERI PERI CASHEW (LEFT: PAGE 9)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
+                <Page density="hard" className="paper-inner-crease-left">
                   <div
                     className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `linear-gradient(to bottom, rgba(34, 14, 8, 0.85), rgba(20, 8, 4, 0.95)), url('${periPeriCashew.images.ingredients}')` }}
@@ -1027,7 +954,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
                       <span>FLAVOUR SPREAD • FIERY SPICE</span>
-                      <span>PAGE 11</span>
+                      <span>PAGE 09</span>
                     </div>
 
                     {/* Left Page Photography Hero */}
@@ -1067,15 +994,15 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 6: PERI PERI CASHEW (RIGHT: PAGE 12)
+                    SPREAD 5: PERI PERI CASHEW (RIGHT: PAGE 10)
                 ========================================== */}
-                <Page density="soft" className="paper-inner-crease-right">
+                <Page density="hard" className="paper-inner-crease-right">
                   <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
                       <span>PERI PERI CASHEW SNACK</span>
-                      <span>PAGE 12</span>
+                      <span>PAGE 10</span>
                     </div>
 
                     {/* Content */}
@@ -1154,64 +1081,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 </Page>
 
                 {/* ==========================================
-                    SPREAD 7: FINAL BRAND PAGE (LEFT: PAGE 13)
-                ========================================== */}
-                <Page density="soft" className="paper-inner-crease-left">
-                  <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
-
-                    {/* Header */}
-                    <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
-                      <span>THE NUTTYBITEZ PROMISE</span>
-                      <span>PAGE 13</span>
-                    </div>
-
-                    {/* Left Page Summary & All-Products Box */}
-                    <div className="space-y-5 my-auto text-center">
-                      <div className="w-14 h-14 mx-auto rounded-full bg-brand-gold/20 flex items-center justify-center border border-brand-gold">
-                        <ShieldCheck className="w-7 h-7 text-brand-gold" />
-                      </div>
-
-                      <div className="space-y-1">
-                        <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-roast">
-                          The Complete Flavour Collection
-                        </h3>
-                        <p className="text-xs text-brand-roast/70 font-serif italic">
-                          Experience all 5 signature creations in one luxury gift package
-                        </p>
-                      </div>
-
-                      {/* Collection Image */}
-                      <div className="relative aspect-[16/9] rounded-xl overflow-hidden shadow-md border border-brand-gold/40">
-                        <img
-                          src="/assets/all_packagings.jpeg"
-                          alt="NuttyBitez Box Set"
-                          className="w-full h-full object-cover img-zoom"
-                        />
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-brand-roast text-brand-cream space-y-3">
-                        <div className="flex items-center justify-between text-xs font-bold border-b border-brand-cream/20 pb-2">
-                          <span>ALL 5 SIGNATURE PACKAGINGS</span>
-                          <span className="text-brand-goldLight">₹745 (SAVE 25%)</span>
-                        </div>
-                        <button
-                          onClick={handleAddAllToCart}
-                          className="w-full py-2.5 rounded-lg text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center justify-center gap-2 transition-transform transform active:scale-95"
-                        >
-                          <PackageCheck className="w-4 h-4" />
-                          <span>{addedAnimationProduct === 'all-products' ? 'Added All 5 Packagings!' : 'Order Complete Flavour Bundle'}</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="pt-3 border-t border-brand-roast/15 text-center text-[10px] uppercase tracking-widest text-brand-roast/60">
-                      Free express shipping across India on orders over ₹499
-                    </div>
-                  </div>
-                </Page>
-
-                {/* ==========================================
                     PAGE 14: BACK COVER (HARDCOVER)
                 ========================================== */}
                 <Page density="hard" className="bg-brand-dark shadow-2xl border-4 border-brand-gold/50">
@@ -1269,7 +1138,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                   </div>
                 </Page>
 
-              </HTMLFlipBook>
+              </Book3D>
             </div>
 
           </div>
@@ -1289,16 +1158,16 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
             {/* Middle Progress Indicator */}
             <div className="flex flex-col items-center gap-1.5 text-center">
               <div className="flex items-center gap-2 text-xs font-serif font-bold text-brand-goldLight">
-                <span>FLAVOUR SPREAD {Math.max(1, Math.ceil(currentPage / 2))} OF 7</span>
+                <span>FLAVOUR SPREAD {Math.max(1, Math.min(5, Math.ceil(currentPage / 2)))} OF 5</span>
                 <span className="text-brand-cream/40">•</span>
-                <span className="text-brand-cream/70 font-sans text-[11px]">Page {currentPage} of 14</span>
+                <span className="text-brand-cream/70 font-sans text-[11px]">Page {currentPage} of 12</span>
               </div>
 
               {/* Visual Progress Bar */}
               <div className="w-48 sm:w-64 h-1.5 bg-brand-dark rounded-full overflow-hidden border border-brand-gold/20">
                 <div
                   className="h-full bg-gold-gradient transition-all duration-300 rounded-full"
-                  style={{ width: `${Math.min(100, (currentPage / 14) * 100)}%` }}
+                  style={{ width: `${Math.min(100, (currentPage / 12) * 100)}%` }}
                 />
               </div>
 

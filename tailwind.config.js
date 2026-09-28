@@ -29,7 +29,8 @@ export default {
       fontFamily: {
         serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
-        script: ['"Sacramento"', '"Caveat"', 'cursive'],
+        script: ['"Caveat"', '"Covered By Your Grace"', 'cursive'],
+        handwritten: ['"Caveat"', '"Covered By Your Grace"', 'cursive'],
       },
       boxShadow: {
         'gold-glow': '0 0 25px -5px rgba(199, 154, 74, 0.25)',

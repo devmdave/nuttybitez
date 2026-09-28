@@ -135,4 +135,27 @@
 .stPageFlip {
   margin: 0 auto;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  overflow: hidden !important;
+  transform-style: preserve-3d !important;
+  perspective: 2500px !important;
+}
+
+/* Fix react-pageflip 3D rendering and backface visibility for physical hardcover feel */
+.stf__wrapper,
+.stf__block {
+  background-color: transparent !important;
+  transform-style: preserve-3d !important;
+}
+
+.stf__item {
+  background-color: transparent !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+.page {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
 }

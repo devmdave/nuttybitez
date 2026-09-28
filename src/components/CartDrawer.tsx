@@ -171,7 +171,7 @@ export const CartDrawer: React.FC = () => {
             {/* Coupon & Total Footer */}
             {cart.length > 0 && (
               <div className="p-6 border-t border-brand-gold/20 bg-brand-dark/95 space-y-4">
-                
+
                 {/* Coupon Input */}
                 <form onSubmit={handleCouponSubmit} className="flex gap-2">
                   <div className="relative flex-1">
