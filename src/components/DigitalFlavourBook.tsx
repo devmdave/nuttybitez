@@ -1134,62 +1134,32 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
               </Book3D>
             </div>
 
-          </div>
-
-          {/* BOOK BOTTOM CONTROL & PAGINATION PANEL */}
-          <div className="w-full max-w-4xl mt-8 p-4 rounded-2xl bg-brand-espresso/90 border border-brand-gold/30 shadow-luxury flex flex-col sm:flex-row items-center justify-between gap-4 text-brand-cream">
-
-            {/* Prev Button */}
+            {/* Floating Side Navigation Controls */}
             <button
               onClick={handlePrev}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-full border border-brand-gold/30 bg-brand-dark/80 hover:bg-brand-gold hover:text-brand-dark text-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 text-xs uppercase tracking-widest font-bold group"
+              className="absolute top-1/2 p-3 sm:p-4 rounded-full border border-brand-gold/30 bg-brand-dark/80 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-1000 ease-in-out z-50 shadow-luxury focus:outline-none"
+              style={{
+                left: '50%',
+                transform: `translate(calc(-50% - ${(currentSpread === 0 || currentSpread === totalSpreads) ? bookDimensions.width / 2 + 80 : bookDimensions.width + 80}px), -50%)`
+              }}
+              aria-label="Previous Page"
             >
-              <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span>Previous Page</span>
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            {/* Middle Progress Indicator */}
-            <div className="flex flex-col items-center gap-1.5 text-center">
-              <div className="flex items-center gap-2 text-xs font-serif font-bold text-brand-goldLight">
-                <span>FLAVOUR SPREAD {Math.max(1, Math.min(5, Math.ceil(currentPage / 2)))} OF 5</span>
-                <span className="text-brand-cream/40">•</span>
-                <span className="text-brand-cream/70 font-sans text-[11px]">Page {currentPage} of 12</span>
-              </div>
-
-              {/* Visual Progress Bar */}
-              <div className="w-48 sm:w-64 h-1.5 bg-brand-dark rounded-full overflow-hidden border border-brand-gold/20">
-                <div
-                  className="h-full bg-gold-gradient transition-all duration-300 rounded-full"
-                  style={{ width: `${Math.min(100, (currentPage / 12) * 100)}%` }}
-                />
-              </div>
-
-              <span className="text-[10px] text-brand-cream/50 tracking-wider">
-                Tip: Press ← → Keyboard keys or Drag page corner
-              </span>
-            </div>
-
-            {/* Right Controls: Next & Sound */}
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-              <button
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                className="p-2.5 rounded-full border border-brand-gold/30 bg-brand-dark/80 text-brand-goldLight hover:border-brand-gold transition-colors"
-                title={soundEnabled ? 'Mute Page Flip Sound' : 'Enable Page Flip Sound'}
-              >
-                {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-              </button>
-
-              <button
-                onClick={handleNext}
-                className="px-5 py-2.5 rounded-full border border-brand-gold/30 bg-brand-dark/80 hover:bg-brand-gold hover:text-brand-dark text-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 text-xs uppercase tracking-widest font-bold group"
-              >
-                <span>Next Page</span>
-                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
+            <button
+              onClick={handleNext}
+              className="absolute top-1/2 p-3 sm:p-4 rounded-full border border-brand-gold/30 bg-brand-dark/80 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-1000 ease-in-out z-50 shadow-luxury focus:outline-none"
+              style={{
+                left: '50%',
+                transform: `translate(calc(-50% + ${(currentSpread === 0 || currentSpread === totalSpreads) ? bookDimensions.width / 2 + 80 : bookDimensions.width + 80}px), -50%)`
+              }}
+              aria-label="Next Page"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
 
           </div>
-
         </div>
 
       </div>
