@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <motion.div
               animate={{ y: [-8, 8, -8] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-[120%] lg:w-[130%] right-[-10%] lg:right-[-5%] xl:right-[-10%] flex justify-center items-center"
+              className="relative w-[120%] lg:w-[130%] right-[0%] lg:right-[4%] xl:right-[2%] flex justify-center items-center"
             >
               {/* Atmospheric Backglows */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-brand-gold/20 rounded-full blur-[120px] -z-10 mix-blend-screen pointer-events-none" />
