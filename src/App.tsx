@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
-import { Navbar } from './components/Navbar';
 import { BrandLogo } from './components/BrandLogo';
 import { Sidebar } from './components/Sidebar';
 import { CartDrawer } from './components/CartDrawer';
@@ -109,7 +108,7 @@ export const App: React.FC = () => {
   };
 
   const renderPage = () => {
-    if (currentPath === '/shop') {
+    if (currentPath === '/shop' || currentPath === '/our-products') {
       return <ShopPage onNavigate={navigate} />;
     }
     if (currentPath.startsWith('/product/')) {
@@ -130,7 +129,6 @@ export const App: React.FC = () => {
       <SearchProvider>
         <div className="min-h-screen bg-brand-dark flex flex-col font-sans selection:bg-brand-gold selection:text-brand-dark">
           <BrandLogo onNavigate={navigate} />
-          <Navbar currentPath={currentPath} onNavigate={navigate} />
           <Sidebar currentPath={currentPath} onNavigate={navigate} />
           
           <div className="flex-1 transition-all duration-300">

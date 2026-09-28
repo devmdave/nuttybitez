@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   };
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-brand-dark">
+    <section id="home" className="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-brand-dark">
       {/* Background Cinematic Food Photography Layer */}
       <div className="absolute inset-0 z-0">
         <img

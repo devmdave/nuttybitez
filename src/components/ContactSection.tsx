@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { MessageCircle, Instagram, Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { MessageCircle, Instagram, Mail, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface ContactSectionProps {
   onNavigate?: (path: string) => void;
+}
+
+interface FormErrors {
+  name?: string;
+  phone?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = () => {
@@ -14,109 +22,197 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
     subject: 'Corporate Gifting',
     message: ''
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const validate = (): boolean => {
+    const newErrors: FormErrors = {};
+    const nameTrimmed = formData.name.trim();
+    const emailTrimmed = formData.email.trim();
+    const phoneTrimmed = formData.phone.trim();
+    const subjectTrimmed = formData.subject.trim();
+    const messageTrimmed = formData.message.trim();
+
+    // Name Validation
+    const nameRegex = /^[a-zA-Z\s'-]{2,60}$/;
+    if (!nameTrimmed) {
+      newErrors.name = 'Full name is required.';
+    } else if (!nameRegex.test(nameTrimmed)) {
+      newErrors.name = 'Please enter a valid name (letters and spaces only).';
+    }
+
+    // Phone / WhatsApp Validation
+    const phoneClean = phoneTrimmed.replace(/[\s\-\(\)\+]/g, '');
+    const phoneRegex = /^[0-9]{7,15}$/;
+    const isFakePhone = /^(\d)\1{9,}$/.test(phoneClean) || phoneClean === '1234567890';
+    if (!phoneTrimmed) {
+      newErrors.phone = 'Phone / WhatsApp number is required.';
+    } else if (!phoneRegex.test(phoneClean) || isFakePhone) {
+      newErrors.phone = 'Please enter a valid 10-digit mobile number.';
+    }
+
+    // Email Validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailTrimmed) {
+      newErrors.email = 'Email address is required.';
+    } else if (!emailRegex.test(emailTrimmed)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    // Subject Validation
+    if (!subjectTrimmed) {
+      newErrors.subject = 'Please select a subject or enquiry type.';
+    }
+
+    // Message Validation
+    if (!messageTrimmed) {
+      newErrors.message = 'Message is required.';
+    } else if (messageTrimmed.length < 10) {
+      newErrors.message = 'Please provide a little more detail (minimum 10 characters).';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (validate()) {
+      setSubmitted(true);
+    }
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
-      
+    <section id="contact" className="py-16 sm:py-24 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
+
       {/* Ambient Background & Texture */}
       <div className="absolute inset-0 opacity-10 bg-dark-paper pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center gap-10">
-        
+
         {/* Business Enquiry Form (Centered Horizontally) */}
         <div className="w-full max-w-3xl">
           <div className="p-8 sm:p-12 rounded-3xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
-            
-            <div className="mb-8 space-y-2 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-[0.25em] font-bold text-brand-gold block">
-                BESPOKE & BULK ORDERS
-              </span>
-              <h3 className="font-serif text-4xl sm:text-5xl font-bold text-brand-cream tracking-tight">
+
+            <div className="mb-10 space-y-3 text-center sm:text-left">
+              <h3 className="font-serif text-5xl sm:text-6xl font-bold text-brand-cream tracking-tight">
                 Send us a Message
               </h3>
-              <p className="text-brand-cream/70 text-sm font-light">
+              <p className="text-brand-cream/80 text-base sm:text-lg font-light leading-relaxed">
                 Have a question about our dragées, corporate gifting, or wholesale orders? Fill in your details below.
               </p>
             </div>
 
             {submitted ? (
               <div className="p-10 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-4">
-                <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto animate-bounce" />
-                <h4 className="font-serif text-3xl font-bold text-brand-cream">Thank You!</h4>
-                <p className="text-sm text-brand-cream/80 max-w-md mx-auto font-light">
+                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto animate-bounce" />
+                <h4 className="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Thank You!</h4>
+                <p className="text-base sm:text-lg text-brand-cream/80 max-w-md mx-auto font-light">
                   Your enquiry has been received. Our concierge team will reach out to you on WhatsApp / Email within 24 hours.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-2 px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient hover:brightness-110 transition-all shadow-md"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({ name: '', email: '', phone: '', subject: 'Corporate Gifting', message: '' });
+                    setErrors({});
+                  }}
+                  className="mt-4 px-10 py-3.5 rounded-full text-sm uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient hover:brightness-110 transition-all shadow-md cursor-pointer"
                 >
                   Send Another Enquiry
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                
+              <form onSubmit={handleSubmit} noValidate className="space-y-7">
+
                 {/* Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/70 font-semibold block">
-                      Full Name
+                    <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                      Full Name *
                     </label>
                     <input
                       type="text"
-                      required
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border border-brand-gold/25 text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all"
+                      onChange={(e) => handleChange('name', e.target.value)}
+                      className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.name
+                        ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
+                        : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
+                        }`}
                       placeholder="Enter your name"
                     />
+                    {errors.name && (
+                      <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.name}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/70 font-semibold block">
-                      Phone / WhatsApp
+                    <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                      Phone / WhatsApp *
                     </label>
                     <input
                       type="tel"
-                      required
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border border-brand-gold/25 text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all"
-                      placeholder="10 digit mobile"
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.phone
+                        ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
+                        : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
+                        }`}
+                      placeholder="10 digit mobile number"
                     />
+                    {errors.phone && (
+                      <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.phone}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/70 font-semibold block">
-                    Email Address
+                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                    Email Address *
                   </label>
                   <input
                     type="email"
-                    required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border border-brand-gold/25 text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all"
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.email
+                      ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
+                      : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
+                      }`}
                     placeholder="yourname@gmail.com"
                   />
+                  {errors.email && (
+                    <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{errors.email}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Subject Dropdown */}
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/70 font-semibold block">
-                    Subject / Enquiry Type
+                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                    Subject / Enquiry Type *
                   </label>
                   <select
                     value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-brand-dark/90 border border-brand-gold/25 text-sm text-brand-cream focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 cursor-pointer transition-all"
+                    onChange={(e) => handleChange('subject', e.target.value)}
+                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/90 border text-base sm:text-lg text-brand-cream focus:outline-none cursor-pointer transition-all ${errors.subject
+                      ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
+                      : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
+                      }`}
                   >
                     <option value="Product Enquiry">Product Enquiry</option>
                     <option value="Bulk Order">Bulk Order</option>
@@ -124,29 +220,43 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                     <option value="Custom Requirement">Custom Requirement</option>
                     <option value="General Enquiry">General Enquiry</option>
                   </select>
+                  {errors.subject && (
+                    <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{errors.subject}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Message */}
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/70 font-semibold block">
-                    Message
+                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                    Message *
                   </label>
                   <textarea
                     rows={4}
-                    required
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border border-brand-gold/25 text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30 transition-all resize-none"
+                    onChange={(e) => handleChange('message', e.target.value)}
+                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all resize-none ${errors.message
+                      ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
+                      : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
+                      }`}
                     placeholder="Tell us about your requirements or jar quantities..."
                   />
+                  {errors.message && (
+                    <div className="flex items-center gap-1.5 text-xs text-rose-400 mt-1.5 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{errors.message}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full text-xs uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                  className="w-full py-4.5 rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-5 h-20" />
                   <span>Submit Enquiry</span>
                 </button>
 
@@ -158,7 +268,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
         {/* 4 Contact Information Tiles Underneath Form */}
         <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
+
           {/* Phone / WhatsApp */}
           <a
             href="https://wa.me/918488971879"
