@@ -72,7 +72,7 @@ const Book3D: React.FC<{
   const translateX = isClosed ? '-25%' : isBackClosed ? '25%' : '0%';
 
   return (
-    <div 
+    <div
       className="relative mx-auto transition-transform duration-1000 ease-in-out"
       style={{
         width: bookDimensions.width * 2,
@@ -83,14 +83,14 @@ const Book3D: React.FC<{
       }}
     >
       {/* Center Spine Shadow (Only visible when book is open) */}
-      <div 
-        className={`absolute top-0 bottom-0 left-1/2 w-16 -translate-x-1/2 bg-gradient-to-r from-transparent via-black/20 to-transparent z-0 pointer-events-none transition-opacity duration-1000 ${isClosed || isBackClosed ? 'opacity-0' : 'opacity-100'}`} 
+      <div
+        className={`absolute top-0 bottom-0 left-1/2 w-16 -translate-x-1/2 bg-gradient-to-r from-transparent via-black/20 to-transparent z-0 pointer-events-none transition-opacity duration-1000 ${isClosed || isBackClosed ? 'opacity-0' : 'opacity-100'}`}
       />
 
       {sheets.map((sheet, i) => {
         const isFlipped = i < currentSpread;
         const zIndex = isFlipped ? 10 + i : 50 - i;
-        
+
         return (
           <div
             key={i}
@@ -105,7 +105,7 @@ const Book3D: React.FC<{
             }}
           >
             {/* FRONT FACE (Right Page) */}
-            <div 
+            <div
               className="absolute inset-0 w-full h-full overflow-hidden rounded-r-xl border-l border-brand-roast/20"
               style={{
                 backfaceVisibility: 'hidden',
@@ -117,9 +117,9 @@ const Book3D: React.FC<{
               {sheet.front}
               <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-black/15 to-transparent pointer-events-none" />
             </div>
-            
+
             {/* BACK FACE (Left Page when flipped) */}
-            <div 
+            <div
               className="absolute inset-0 w-full h-full overflow-hidden rounded-l-xl border-r border-brand-roast/20"
               style={{
                 backfaceVisibility: 'hidden',
@@ -302,14 +302,10 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
+        <div className="text-center max-w-4xl mx-auto mb-10 space-y-4">
           <h2 className="font-serif text-4xl sm:text-6xl font-bold text-brand-cream tracking-wide">
-            OUR PRODUCTS
+            FLIP THROUGH THE MENU
           </h2>
-          <div className="w-24 h-[2px] bg-gold-gradient mx-auto" />
-          <p className="text-brand-cream/80 font-serif text-lg sm:text-xl italic">
-            "Flip through our artisanal pages. Drag a corner to turn the page."
-          </p>
         </div>
 
 
