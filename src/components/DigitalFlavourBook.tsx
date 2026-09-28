@@ -317,7 +317,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
           <div className="w-full flex justify-center items-center py-4 relative">
 
             {/* The 3D FlipBook Render */}
-            <div className="relative rounded-2xl overflow-visible book-container-shadow">
+            <div className="relative rounded-2xl overflow-visible">
 
               {/* Spine Line Gradient Overlay */}
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-10 z-30 book-spine-shadow pointer-events-none hidden sm:block" />
