@@ -320,7 +320,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
             <div className="relative rounded-2xl overflow-visible">
 
               {/* Spine Line Gradient Overlay */}
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-10 z-30 book-spine-shadow pointer-events-none hidden sm:block" />
+              <div 
+                className={`absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-10 z-30 book-spine-shadow pointer-events-none hidden sm:block transition-opacity duration-1000 ${(currentSpread === 0 || currentSpread === totalSpreads) ? 'opacity-0' : 'opacity-100'}`} 
+              />
 
               {/* Bookmark Ribbon Hanging from Top */}
               <div className="absolute top-0 right-12 z-40 hidden sm:block pointer-events-none">
