@@ -111,7 +111,6 @@ const Book3D: React.FC<{
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'rotateY(0deg)',
-                backgroundColor: '#FAF3E8',
               }}
             >
               {sheet.front}
@@ -125,7 +124,6 @@ const Book3D: React.FC<{
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
                 transform: 'rotateY(180deg)',
-                backgroundColor: '#FAF3E8',
               }}
             >
               {sheet.back}
