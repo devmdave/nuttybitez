@@ -410,23 +410,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-botanicalDark via-transparent to-transparent opacity-80" />
 
-                        <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-botanicalDark/90 border border-brand-gold/40 backdrop-blur-md">
-                          <span className="text-[10px] uppercase tracking-widest text-brand-goldLight font-bold block mb-1">
-                            Botanical Atmosphere
-                          </span>
-                          <p className="font-serif italic text-xs text-brand-cream">
-                            Betel Leaves • Sweet Saunf • Dried Pink Rose Petals • Almonds
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Ingredient Pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {paanShot.ingredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-brand-leaf/40 border border-brand-gold/30 text-brand-cream">
-                            🌱 {ing}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
@@ -449,48 +432,17 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Editorial Content */}
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-4 mb-auto mt-12">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-leaf block mb-1">
-                          Fresh & Aromatic Digestif
-                        </span>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
-                          {paanShot.name}
+                          Paan Shot
                         </h3>
                         <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
-                          {paanShot.flavour}
+                          A refreshing Indian paan-inspired almond dragée combining aromatic paan flavours, subtle sweetness, and crunchy almonds. A unique, refreshing twist that brings the familiar essence of paan into every bite, remembering “Khaike Paan Banaras Wala”!!
                         </p>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-brand-roast/80 leading-relaxed font-sans font-normal">
-                        {paanShot.description}
-                      </p>
 
-                      {/* Taste Profile Ratings */}
-                      <div className="grid grid-cols-3 gap-2 py-3 border-y border-brand-roast/15 text-center bg-white/40 rounded-xl p-3">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Aroma</span>
-                          <span className="font-serif text-lg font-bold text-brand-leaf">98%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Crunch</span>
-                          <span className="font-serif text-lg font-bold text-brand-leaf">90%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Freshness</span>
-                          <span className="font-serif text-lg font-bold text-brand-leaf">95%</span>
-                        </div>
-                      </div>
-
-                      {/* Hero Ingredient Badge */}
-                      <div className="p-3 rounded-xl bg-brand-leaf/10 border border-brand-leaf/20 text-xs">
-                        <span className="font-bold text-brand-leaf block mb-0.5 uppercase text-[10px] tracking-wider">
-                          Hero Ingredient Environment
-                        </span>
-                        <p className="text-brand-roast/80 text-[11px]">
-                          Authentic Indian betel leaf extract combined with sweet saunf & crushed dried pink rose petals.
-                        </p>
-                      </div>
                     </div>
 
                     {/* Price & Cart Actions */}
@@ -503,22 +455,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setQuickViewProduct(paanShot)}
-                          className="p-2.5 rounded-full border border-brand-roast/30 text-brand-roast hover:bg-brand-roast/10 transition-colors"
-                          title="Quick View"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={(e) => handleAddToCart(paanShot, e)}
-                          className="px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center gap-1.5 transition-all transform hover:scale-105"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>{addedAnimationProduct === paanShot.id ? 'Added!' : 'Add to Cart'}</span>
-                        </button>
-                      </div>
+
                     </div>
                   </div>
                 </Page>
@@ -547,23 +484,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-espresso via-transparent to-transparent opacity-80" />
 
-                        <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-espresso/90 border border-brand-gold/40 backdrop-blur-md">
-                          <span className="text-[10px] uppercase tracking-widest text-brand-goldLight font-bold block mb-1">
-                            Coffee & Cream Environment
-                          </span>
-                          <p className="font-serif italic text-xs text-brand-cream">
-                            Roasted Arabica Coffee Beans • Tiramisu Cream • Cocoa Nibs
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Ingredient Pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {coffeeTiramisu.ingredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-brand-roast/60 border border-brand-gold/30 text-brand-cream">
-                            ☕ {ing}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
@@ -586,48 +506,17 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Content */}
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-4 mb-auto mt-12">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-gold block mb-1">
-                          Rich Coffee Connoisseur Selection
-                        </span>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
-                          {coffeeTiramisu.name}
+                          Coffee Tiramisu
                         </h3>
                         <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
-                          {coffeeTiramisu.flavour}
+                          A delightful blend of rich coffee and tiramisu-inspired flavours wrapped around crunchy almonds. Creamy and indulgent, it’s the perfect pick-me-up for coffee and dessert lovers alike.
                         </p>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-brand-roast/80 leading-relaxed font-sans font-normal">
-                        {coffeeTiramisu.description}
-                      </p>
 
-                      {/* Taste Profile Ratings */}
-                      <div className="grid grid-cols-3 gap-2 py-3 border-y border-brand-roast/15 text-center bg-white/40 rounded-xl p-3">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Coffee Aroma</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">94%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Richness</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">95%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Crunch</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">88%</span>
-                        </div>
-                      </div>
-
-                      {/* Hero Ingredient Badge */}
-                      <div className="p-3 rounded-xl bg-brand-gold/15 border border-brand-gold/30 text-xs">
-                        <span className="font-bold text-brand-roast block mb-0.5 uppercase text-[10px] tracking-wider">
-                          Hero Ingredient Environment
-                        </span>
-                        <p className="text-brand-roast/80 text-[11px]">
-                          Single-origin Arabica espresso dust combined with Italian mascarpone white chocolate cream.
-                        </p>
-                      </div>
                     </div>
 
                     {/* Price & Cart Actions */}
@@ -640,22 +529,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setQuickViewProduct(coffeeTiramisu)}
-                          className="p-2.5 rounded-full border border-brand-roast/30 text-brand-roast hover:bg-brand-roast/10 transition-colors"
-                          title="Quick View"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={(e) => handleAddToCart(coffeeTiramisu, e)}
-                          className="px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center gap-1.5 transition-all transform hover:scale-105"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>{addedAnimationProduct === coffeeTiramisu.id ? 'Added!' : 'Add to Cart'}</span>
-                        </button>
-                      </div>
+
                     </div>
                   </div>
                 </Page>
@@ -684,23 +558,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80" />
 
-                        <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-dark/90 border border-brand-gold/40 backdrop-blur-md">
-                          <span className="text-[10px] uppercase tracking-widest text-brand-goldLight font-bold block mb-1">
-                            Milk Chocolate & Almonds
-                          </span>
-                          <p className="font-serif italic text-xs text-brand-cream">
-                            Roasted California Almonds • Smooth Cocoa • Cane Sugar
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Ingredient Pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {chocoCrunch.ingredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-brand-cocoa/60 border border-brand-gold/30 text-brand-cream">
-                            🍫 {ing}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
@@ -723,48 +580,17 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-4 mb-auto mt-12">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-gold block mb-1">
-                          Classic Dragée Masterpiece
-                        </span>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
-                          {chocoCrunch.name}
+                          Choco Crunch
                         </h3>
                         <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
-                          {chocoCrunch.flavour}
+                          A rich chocolate-coated almond dragée delivering a satisfying crunch with every bite. Smooth, indulgent chocolate and premium almonds come together for a timeless treat made for chocolate lovers.
                         </p>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-brand-roast/80 leading-relaxed font-sans font-normal">
-                        {chocoCrunch.description}
-                      </p>
 
-                      {/* Taste Profile Ratings */}
-                      <div className="grid grid-cols-3 gap-2 py-3 border-y border-brand-roast/15 text-center bg-white/40 rounded-xl p-3">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Crunch</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">95%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Sweetness</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">75%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Richness</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">90%</span>
-                        </div>
-                      </div>
-
-                      {/* Hero Ingredient Badge */}
-                      <div className="p-3 rounded-xl bg-brand-gold/15 border border-brand-gold/30 text-xs">
-                        <span className="font-bold text-brand-roast block mb-0.5 uppercase text-[10px] tracking-wider">
-                          Hero Ingredient Environment
-                        </span>
-                        <p className="text-brand-roast/80 text-[11px]">
-                          Golden roasted California almonds encased in smooth milk chocolate dragée layers.
-                        </p>
-                      </div>
                     </div>
 
                     {/* Price & Cart Actions */}
@@ -777,22 +603,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setQuickViewProduct(chocoCrunch)}
-                          className="p-2.5 rounded-full border border-brand-roast/30 text-brand-roast hover:bg-brand-roast/10 transition-colors"
-                          title="Quick View"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={(e) => handleAddToCart(chocoCrunch, e)}
-                          className="px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center gap-1.5 transition-all transform hover:scale-105"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>{addedAnimationProduct === chocoCrunch.id ? 'Added!' : 'Add to Cart'}</span>
-                        </button>
-                      </div>
+
                     </div>
                   </div>
                 </Page>
@@ -821,23 +632,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80" />
 
-                        <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-dark/95 border border-brand-gold/40 backdrop-blur-md">
-                          <span className="text-[10px] uppercase tracking-widest text-brand-goldLight font-bold block mb-1">
-                            Single-Origin Cacao Pods & Nibs
-                          </span>
-                          <p className="font-serif italic text-xs text-brand-cream">
-                            70% Dark Cocoa Mass • Roasted Almonds • Cocoa Nibs
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Ingredient Pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {darkChocolate.ingredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-brand-dark/80 border border-brand-gold/30 text-brand-cream">
-                            🍫 {ing}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
@@ -860,48 +654,17 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-4 mb-auto mt-12">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-gold block mb-1">
-                          70% Pure Dark Cocoa Purist
-                        </span>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
-                          {darkChocolate.name}
+                          Rose Petal
                         </h3>
                         <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
-                          {darkChocolate.flavour}
+                          Delicate rose flavours meet crunchy almonds in this elegant dragée, beautifully complemented by real rose-petal notes. Floral, mildly sweet, and irresistibly aromatic, it adds a graceful twist to snacking.
                         </p>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-brand-roast/80 leading-relaxed font-sans font-normal">
-                        {darkChocolate.description}
-                      </p>
 
-                      {/* Taste Profile Ratings */}
-                      <div className="grid grid-cols-3 gap-2 py-3 border-y border-brand-roast/15 text-center bg-white/40 rounded-xl p-3">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Richness</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">98%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Crunch</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">92%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Bittersweet</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">85%</span>
-                        </div>
-                      </div>
-
-                      {/* Hero Ingredient Badge */}
-                      <div className="p-3 rounded-xl bg-brand-gold/15 border border-brand-gold/30 text-xs">
-                        <span className="font-bold text-brand-roast block mb-0.5 uppercase text-[10px] tracking-wider">
-                          Hero Ingredient Environment
-                        </span>
-                        <p className="text-brand-roast/80 text-[11px]">
-                          70% single-origin dark cacao shell zero artificial additives or palm oils.
-                        </p>
-                      </div>
                     </div>
 
                     {/* Price & Cart Actions */}
@@ -914,22 +677,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setQuickViewProduct(darkChocolate)}
-                          className="p-2.5 rounded-full border border-brand-roast/30 text-brand-roast hover:bg-brand-roast/10 transition-colors"
-                          title="Quick View"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={(e) => handleAddToCart(darkChocolate, e)}
-                          className="px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center gap-1.5 transition-all transform hover:scale-105"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>{addedAnimationProduct === darkChocolate.id ? 'Added!' : 'Add to Cart'}</span>
-                        </button>
-                      </div>
+
                     </div>
                   </div>
                 </Page>
@@ -958,23 +706,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-spice/80 via-transparent to-transparent opacity-70" />
 
-                        <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-dark/95 border border-brand-spice/50 backdrop-blur-md">
-                          <span className="text-[10px] uppercase tracking-widest text-brand-spice font-bold block mb-1">
-                            Fiery Chili & Cashew Atmosphere
-                          </span>
-                          <p className="font-serif italic text-xs text-brand-cream">
-                            Jumbo Mangalore Cashews • Birdseye Chili • Lemon Zest
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Ingredient Pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {periPeriCashew.ingredients.map((ing, i) => (
-                          <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-brand-spice/40 border border-brand-spice/50 text-brand-cream">
-                            🌶️ {ing}
-                          </span>
-                        ))}
                       </div>
                     </div>
 
@@ -997,48 +728,17 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-4 mb-auto mt-12">
                       <div>
-                        <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-brand-spice block mb-1">
-                          Bold Savoury Snack
-                        </span>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
-                          {periPeriCashew.name}
+                          Royal Kunafa
                         </h3>
                         <p className="font-script text-xl sm:text-2xl text-brand-spice mt-0.5">
-                          {periPeriCashew.flavour}
+                          A royal combination of crunchy almonds, delicate kunafa-inspired flavours, and pistachio goodness. Rich, nutty, and indulgent, this unique dragée transforms the beloved Middle Eastern dessert into an irresistible snack.
                         </p>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-brand-roast/80 leading-relaxed font-sans font-normal">
-                        {periPeriCashew.description}
-                      </p>
 
-                      {/* Taste Profile Ratings */}
-                      <div className="grid grid-cols-3 gap-2 py-3 border-y border-brand-roast/15 text-center bg-white/40 rounded-xl p-3">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Spice Heat</span>
-                          <span className="font-serif text-lg font-bold text-brand-spice">90%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Crunch</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">96%</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-widest text-brand-roast/60 font-bold block">Aroma</span>
-                          <span className="font-serif text-lg font-bold text-brand-roast">92%</span>
-                        </div>
-                      </div>
-
-                      {/* Hero Ingredient Badge */}
-                      <div className="p-3 rounded-xl bg-brand-spice/15 border border-brand-spice/30 text-xs">
-                        <span className="font-bold text-brand-spice block mb-0.5 uppercase text-[10px] tracking-wider">
-                          Hero Ingredient Environment
-                        </span>
-                        <p className="text-brand-roast/80 text-[11px]">
-                          Mangalore jumbo cashews tossed in birdseye chili, garlic, lemon zest & Himalayan pink salt.
-                        </p>
-                      </div>
                     </div>
 
                     {/* Price & Cart Actions */}
@@ -1051,22 +751,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setQuickViewProduct(periPeriCashew)}
-                          className="p-2.5 rounded-full border border-brand-roast/30 text-brand-roast hover:bg-brand-roast/10 transition-colors"
-                          title="Quick View"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={(e) => handleAddToCart(periPeriCashew, e)}
-                          className="px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient shadow-md hover:brightness-110 flex items-center gap-1.5 transition-all transform hover:scale-105"
-                        >
-                          <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>{addedAnimationProduct === periPeriCashew.id ? 'Added!' : 'Add to Cart'}</span>
-                        </button>
-                      </div>
+
                     </div>
                   </div>
                 </Page>
