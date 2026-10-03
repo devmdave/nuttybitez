@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import ScratchCard from './ScratchCard';
 
 interface DigitalFlavourBookProps {
   onNavigate?: (path: string) => void;
@@ -138,12 +139,16 @@ const Book3D: React.FC<{
 
 export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNavigate }) => {
   const [currentSpread, setCurrentSpread] = useState<number>(0);
-  const totalSpreads = 6;
-  const currentPage = currentSpread === 0 ? 0 : currentSpread === 6 ? 11 : currentSpread * 2;
+  const totalSpreads = 7;
+  const currentPage = currentSpread === 0 ? 0 : currentSpread === 7 ? 13 : currentSpread * 2;
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [bookDimensions, setBookDimensions] = useState({ width: 480, height: 660 });
   const { addToCart, setQuickViewProduct } = useCart();
   const [addedAnimationProduct, setAddedAnimationProduct] = useState<string | null>(null);
+
+  // Custom Flavour State
+  const [customFlavourInput, setCustomFlavourInput] = useState('');
+  const [submittedFlavour, setSubmittedFlavour] = useState('');
 
   // Responsive Book Sizing calculation
   useEffect(() => {
@@ -232,7 +237,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
   const turnToPage = (pageIndex: number) => {
     let spreadIndex = Math.floor(pageIndex / 2);
     if (pageIndex === 0) spreadIndex = 0;
-    else if (pageIndex >= 11) spreadIndex = 6;
+    else if (pageIndex >= 13) spreadIndex = 7;
     setCurrentSpread(spreadIndex);
   };
 
@@ -404,7 +409,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     <div className="my-auto space-y-4">
                       <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-luxury group">
                         <img
-                          src={paanShot.images.poster}
+                          src="/assets/prodcut_images/paan_shot_jar_img.png"
                           alt={paanShot.name}
                           className="w-full h-full object-cover img-zoom"
                         />
@@ -437,7 +442,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
                           Paan Shot
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
+                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
                           A refreshing Indian paan-inspired almond dragée combining aromatic paan flavours, subtle sweetness, and crunchy almonds. A unique, refreshing twist that brings the familiar essence of paan into every bite, remembering “Khaike Paan Banaras Wala”!!
                         </p>
                       </div>
@@ -448,10 +453,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Price & Cart Actions */}
                     <div className="pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
-                        <span className="text-[10px] uppercase text-brand-roast/60 font-bold block">Net Weight {paanShot.weight}</span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-serif text-2xl font-bold text-brand-roast">₹{paanShot.price}</span>
-                          <span className="text-xs line-through text-brand-roast/40">₹{paanShot.originalPrice}</span>
+                        <span className="text-sm uppercase text-brand-roast/60 font-bold block mb-1">Net Weight {paanShot.weight}</span>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-serif text-4xl font-bold text-brand-roast">₹{paanShot.price}</span>
                         </div>
                       </div>
 
@@ -478,7 +482,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     <div className="my-auto space-y-4">
                       <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-luxury group">
                         <img
-                          src={coffeeTiramisu.images.poster}
+                          src="/assets/prodcut_images/coffee_tiramisu_jar_img.jpeg"
                           alt={coffeeTiramisu.name}
                           className="w-full h-full object-cover img-zoom"
                         />
@@ -511,7 +515,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
                           Coffee Tiramisu
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
+                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
                           A delightful blend of rich coffee and tiramisu-inspired flavours wrapped around crunchy almonds. Creamy and indulgent, it’s the perfect pick-me-up for coffee and dessert lovers alike.
                         </p>
                       </div>
@@ -522,10 +526,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Price & Cart Actions */}
                     <div className="pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
-                        <span className="text-[10px] uppercase text-brand-roast/60 font-bold block">Net Weight {coffeeTiramisu.weight}</span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-serif text-2xl font-bold text-brand-roast">₹{coffeeTiramisu.price}</span>
-                          <span className="text-xs line-through text-brand-roast/40">₹{coffeeTiramisu.originalPrice}</span>
+                        <span className="text-sm uppercase text-brand-roast/60 font-bold block mb-1">Net Weight {coffeeTiramisu.weight}</span>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-serif text-4xl font-bold text-brand-roast">₹{coffeeTiramisu.price}</span>
                         </div>
                       </div>
 
@@ -552,7 +555,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     <div className="my-auto space-y-4">
                       <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-luxury group">
                         <img
-                          src={chocoCrunch.images.poster}
+                          src="/assets/prodcut_images/choco_crunch_jar_img.jpeg"
                           alt={chocoCrunch.name}
                           className="w-full h-full object-cover img-zoom"
                         />
@@ -585,7 +588,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
                           Choco Crunch
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
+                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
                           A rich chocolate-coated almond dragée delivering a satisfying crunch with every bite. Smooth, indulgent chocolate and premium almonds come together for a timeless treat made for chocolate lovers.
                         </p>
                       </div>
@@ -596,10 +599,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Price & Cart Actions */}
                     <div className="pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
-                        <span className="text-[10px] uppercase text-brand-roast/60 font-bold block">Net Weight {chocoCrunch.weight}</span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-serif text-2xl font-bold text-brand-roast">₹{chocoCrunch.price}</span>
-                          <span className="text-xs line-through text-brand-roast/40">₹{chocoCrunch.originalPrice}</span>
+                        <span className="text-sm uppercase text-brand-roast/60 font-bold block mb-1">Net Weight {chocoCrunch.weight}</span>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-serif text-4xl font-bold text-brand-roast">₹{chocoCrunch.price}</span>
                         </div>
                       </div>
 
@@ -626,7 +628,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     <div className="my-auto space-y-4">
                       <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-luxury group">
                         <img
-                          src={darkChocolate.images.poster}
+                          src="/assets/prodcut_images/rose_petal_jar_img.jpeg"
                           alt={darkChocolate.name}
                           className="w-full h-full object-cover img-zoom"
                         />
@@ -659,7 +661,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
                           Rose Petal
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-gold mt-0.5">
+                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
                           Delicate rose flavours meet crunchy almonds in this elegant dragée, beautifully complemented by real rose-petal notes. Floral, mildly sweet, and irresistibly aromatic, it adds a graceful twist to snacking.
                         </p>
                       </div>
@@ -670,10 +672,9 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Price & Cart Actions */}
                     <div className="pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
-                        <span className="text-[10px] uppercase text-brand-roast/60 font-bold block">Net Weight {darkChocolate.weight}</span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-serif text-2xl font-bold text-brand-roast">₹{darkChocolate.price}</span>
-                          <span className="text-xs line-through text-brand-roast/40">₹{darkChocolate.originalPrice}</span>
+                        <span className="text-sm uppercase text-brand-roast/60 font-bold block mb-1">Net Weight {darkChocolate.weight}</span>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-serif text-4xl font-bold text-brand-roast">₹{darkChocolate.price}</span>
                         </div>
                       </div>
 
@@ -700,7 +701,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     <div className="my-auto space-y-4">
                       <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-brand-spice/60 shadow-luxury group">
                         <img
-                          src={periPeriCashew.images.poster}
+                          src="/assets/prodcut_images/royal_kunafa_jar_img.jpeg"
                           alt={periPeriCashew.name}
                           className="w-full h-full object-cover img-zoom"
                         />
@@ -733,7 +734,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
                           Royal Kunafa
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-spice mt-0.5">
+                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
                           A royal combination of crunchy almonds, delicate kunafa-inspired flavours, and pistachio goodness. Rich, nutty, and indulgent, this unique dragée transforms the beloved Middle Eastern dessert into an irresistible snack.
                         </p>
                       </div>
@@ -744,14 +745,93 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     {/* Price & Cart Actions */}
                     <div className="pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
-                        <span className="text-[10px] uppercase text-brand-roast/60 font-bold block">Net Weight {periPeriCashew.weight}</span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-serif text-2xl font-bold text-brand-roast">₹{periPeriCashew.price}</span>
-                          <span className="text-xs line-through text-brand-roast/40">₹{periPeriCashew.originalPrice}</span>
+                        <span className="text-sm uppercase text-brand-roast/60 font-bold block mb-1">Net Weight {periPeriCashew.weight}</span>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-serif text-4xl font-bold text-brand-roast">₹{periPeriCashew.price}</span>
                         </div>
                       </div>
 
 
+                    </div>
+                  </div>
+                </Page>
+
+                {/* ==========================================
+                    SPREAD 6: CUSTOM FLAVOUR (LEFT: PAGE 11)
+                ========================================== */}
+                <Page density="hard" className="paper-inner-crease-left">
+                  <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-cream relative bg-brand-dark overflow-hidden">
+                    {/* Header */}
+                    <div className="flex items-center justify-between border-b border-brand-gold/30 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-goldLight">
+                      <span>FLAVOUR SPREAD • CUSTOM DISCOVERY</span>
+                      <span>PAGE 11</span>
+                    </div>
+
+                    {/* Left Page Scratch Card Hero */}
+                    <div className="my-auto">
+                      <div className="relative aspect-square w-full">
+                        <ScratchCard
+                          customFlavour={submittedFlavour}
+                          isUnlocked={!!submittedFlavour}
+                          imageSrc="/assets/empty_jar_img.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t border-brand-gold/30 text-center text-[10px] text-brand-goldLight uppercase tracking-widest">
+                      Interactive Personalization
+                    </div>
+                  </div>
+                </Page>
+
+                {/* ==========================================
+                    SPREAD 6: CUSTOM FLAVOUR (RIGHT: PAGE 12)
+                ========================================== */}
+                <Page density="hard" className="paper-inner-crease-right">
+                  <div className="w-full h-full p-6 sm:p-10 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                    {/* Header */}
+                    <div className="flex items-center justify-between border-b border-brand-roast/20 pb-3 text-[10px] uppercase font-serif tracking-widest text-brand-roast/70">
+                      <span>CUSTOM FLAVOUR CREATION</span>
+                      <span>PAGE 12</span>
+                    </div>
+
+                    {/* Right Page Input Form */}
+                    <div className="my-auto space-y-6">
+                      <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        Want a flavour of your choice?
+                      </h3>
+
+                      <div className="space-y-4">
+                        <input
+                          type="text"
+                          placeholder="Enter your flavour name..."
+                          className="w-full px-4 py-3 rounded-lg border-2 border-brand-roast/20 bg-transparent text-brand-roast font-serif text-lg focus:outline-none focus:border-brand-roast/50 placeholder:text-brand-roast/40 transition-colors"
+                          value={customFlavourInput}
+                          onChange={(e) => setCustomFlavourInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && customFlavourInput.trim()) {
+                              setSubmittedFlavour(customFlavourInput.trim());
+                            }
+                          }}
+                        />
+                        <button
+                          onClick={() => {
+                            if (customFlavourInput.trim()) {
+                              setSubmittedFlavour(customFlavourInput.trim());
+                            }
+                          }}
+                          disabled={!customFlavourInput.trim()}
+                          className="w-full py-3 rounded-full bg-brand-roast text-brand-goldLight font-bold tracking-widest uppercase text-sm hover:bg-brand-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          Submit
+                        </button>
+                      </div>
+
+                      {submittedFlavour && (
+                        <p className="text-xl font-script text-brand-roast mt-4 text-center">
+                          Flavour submitted! Discover it on the left page.
+                        </p>
+                      )}
                     </div>
                   </div>
                 </Page>
