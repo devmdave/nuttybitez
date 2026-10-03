@@ -12,6 +12,7 @@ import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { ContactPage } from './pages/ContactPage';
+import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -130,6 +131,8 @@ export const App: React.FC = () => {
           <div className="flex-1 transition-all duration-300">
             {renderPage()}
           </div>
+
+          <Footer />
 
 
 
