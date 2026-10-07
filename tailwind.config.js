@@ -27,6 +27,7 @@ export default {
         }
       },
       fontFamily: {
+        parisienne: ['"Parisienne"', 'cursive'],
         serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
         script: ['"Caveat"', '"Covered By Your Grace"', 'cursive'],

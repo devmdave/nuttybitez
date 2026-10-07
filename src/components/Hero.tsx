@@ -47,12 +47,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="w-full lg:w-[45%] space-y-8 text-left z-10"
           >
             <div className="space-y-2">
-              {/* Main Headline - Kept on 2 lines, responsive sizes, no wrap */}
-              <h1 className="font-serif leading-[1.05] tracking-tight whitespace-nowrap">
-                <span className="block text-[3rem] lg:text-[4vw] xl:text-[4.5vw] font-medium text-brand-cream/95">
+              {/* Main Headline */}
+              <h1 className="font-parisienne leading-[1.05] tracking-tight whitespace-nowrap">
+                <span className="text-[8vw] sm:text-[6vw] lg:text-[3.25vw] xl:text-[3.5vw] font-normal text-[#E6C37A] mr-[0.3em]">
                   Premium
                 </span>
-                <span className="block text-[3.5rem] lg:text-[4.5vw] xl:text-[5vw] font-bold text-brand-gold">
+                <span className="text-[8vw] sm:text-[6vw] lg:text-[3.25vw] xl:text-[3.5vw] font-normal text-[#E6C37A]">
                   Munching Forever
                 </span>
               </h1>
