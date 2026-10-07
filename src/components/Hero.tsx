@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             {/* Body Copy - Larger text, wider block to avoid unnecessary wrap */}
             <div className="text-base lg:text-lg text-brand-cream/85 font-light leading-relaxed space-y-5 max-w-[90%]">
-              <p>It all started with our love for snacking. 😄</p>
+              <p>It all started with our love for snacking. <img src="/assets/happy.png" alt="Happy" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
               
               <p>With full-time jobs, we’ve always loved trying new flavours with interesting combinations and sharing it with people around us.</p>
               
@@ -74,9 +74,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               
               <p>We began experimenting with flavours, getting feedback from friends and colleagues and are building it one step at a time!</p>
               
-              <p>Today, every Nutty Bitez jar carries a little piece of that journey. ❤️</p>
+              <p>Today, every Nutty Bitez jar carries a little piece of that journey. <img src="/assets/heart.png" alt="Heart" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
               
-              <p>And we’re just getting started. ✨</p>
+              <p>And we’re just getting started. <img src="/assets/star.png" alt="Sparkles" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
             </div>
 
             {/* CTA */}

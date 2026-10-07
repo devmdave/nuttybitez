@@ -87,10 +87,10 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
       <div className="absolute inset-0 opacity-10 bg-dark-paper pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center gap-9">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-9 lg:gap-12">
 
-        {/* Business Enquiry Form (Centered Horizontally) */}
-        <div className="w-full max-w-3xl">
+        {/* Business Enquiry Form */}
+        <div className="w-full max-w-3xl lg:max-w-none lg:flex-1">
           <div className="p-7 sm:p-12 rounded-3xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
 
             <div className="mb-6 sm:mb-8 space-y-2 text-center sm:text-left">
@@ -231,8 +231,8 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           </div>
         </div>
 
-        {/* 4 Contact Information Tiles Underneath Form */}
-        <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* 4 Contact Information Tiles */}
+        <div className="w-full max-w-3xl lg:max-w-xs xl:max-w-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 shrink-0">
 
           {/* Phone / WhatsApp */}
           <a
