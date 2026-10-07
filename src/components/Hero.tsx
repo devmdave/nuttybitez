@@ -60,9 +60,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <div className="w-64 h-[3px] bg-gradient-to-r from-brand-gold via-brand-goldLight to-transparent rounded-full mt-3 opacity-90" />
             </div>
 
-            {/* Body Copy - Larger text, wider block to avoid unnecessary wrap */}
-            <div className="text-base lg:text-lg text-brand-cream/85 font-light leading-relaxed space-y-5 max-w-[90%]">
-              <p>It all started with our love for snacking. <img src="/assets/happy.png" alt="Happy" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
+            {/* Story / Body Copy */}
+            <div className="text-[1rem] sm:text-[1.05rem] lg:text-[1.125rem] text-brand-ivory/85 font-light leading-[1.85] tracking-[0.015em] space-y-6 max-w-[50ch] text-pretty my-10">
+              <p className="text-[1.1rem] sm:text-[1.15rem] lg:text-[1.25rem] text-brand-ivory font-normal tracking-[0.03em] pb-1">
+                It all started with our love for snacking. <img src="/assets/happy.png" alt="Happy" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" />
+              </p>
               
               <p>With full-time jobs, we’ve always loved trying new flavours with interesting combinations and sharing it with people around us.</p>
               
@@ -74,9 +76,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               
               <p>We began experimenting with flavours, getting feedback from friends and colleagues and are building it one step at a time!</p>
               
-              <p>Today, every Nutty Bitez jar carries a little piece of that journey. <img src="/assets/heart.png" alt="Heart" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
+              <p>Today, every Nutty Bitez jar carries a little piece of that journey. <img src="/assets/heart.png" alt="Heart" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" /></p>
               
-              <p>And we’re just getting started. <img src="/assets/star.png" alt="Sparkles" className="inline-block h-[1.5em] w-auto align-[-0.2em] object-contain" /></p>
+              <p className="text-[1.1rem] sm:text-[1.15rem] lg:text-[1.25rem] text-[#E6C37A] font-normal tracking-[0.03em] pt-1">
+                And we’re just getting started. <img src="/assets/star.png" alt="Sparkles" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" />
+              </p>
             </div>
 
             {/* CTA */}
