@@ -81,23 +81,23 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
   };
 
   return (
-    <section id="contact" className="pt-8 pb-16 sm:pt-10 sm:pb-20 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
+    <section id="contact" className="pt-8 pb-10 sm:pt-10 sm:pb-16 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
 
       {/* Ambient Background & Texture */}
       <div className="absolute inset-0 opacity-10 bg-dark-paper pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center gap-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center gap-9">
 
         {/* Business Enquiry Form (Centered Horizontally) */}
         <div className="w-full max-w-3xl">
-          <div className="p-8 sm:p-12 rounded-3xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
+          <div className="p-7 sm:p-12 rounded-3xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
 
-            <div className="mb-10 space-y-3 text-center sm:text-left">
-              <h3 className="font-serif text-5xl sm:text-6xl font-bold text-brand-cream tracking-tight">
+            <div className="mb-6 sm:mb-8 space-y-2 text-center sm:text-left">
+              <h3 className="font-serif text-4xl sm:text-5xl font-bold text-brand-cream tracking-tight">
                 Send us a Message
               </h3>
-              <p className="text-brand-cream/80 text-base sm:text-lg font-light leading-relaxed">
+              <p className="text-brand-cream/80 text-sm sm:text-base font-light leading-relaxed">
                 Have a question about our dragées, corporate gifting, or wholesale orders? Fill in your details below.
               </p>
             </div>
@@ -121,19 +121,19 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="space-y-7">
+              <form onSubmit={handleSubmit} noValidate className="space-y-6 sm:space-y-7">
 
                 {/* Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
                       Full Name *
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => handleChange('name', e.target.value)}
-                      className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.name
+                      className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.name
                         ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                         : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                         }`}
@@ -147,15 +147,15 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
                       Phone / WhatsApp *
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => handleChange('phone', e.target.value)}
-                      className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.phone
+                      className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.phone
                         ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                         : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                         }`}
@@ -171,15 +171,15 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 </div>
 
                 {/* Email */}
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
                     Email Address *
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleChange('email', e.target.value)}
-                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.email
+                    className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.email
                       ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                       : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                       }`}
@@ -194,15 +194,15 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 </div>
 
                 {/* Message */}
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
                     Message *
                   </label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => handleChange('message', e.target.value)}
-                    className={`w-full px-5 py-4 rounded-xl bg-brand-dark/70 border text-base sm:text-lg text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all resize-none ${errors.message
+                    className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all resize-none ${errors.message
                       ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                       : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                       }`}
@@ -219,7 +219,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full h-20 rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
+                  className="w-full h-[72px] rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
                 >
                   <Send className="w-5 h-5" />
                   <span>Submit Enquiry</span>

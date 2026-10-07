@@ -149,6 +149,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
   // Custom Flavour State
   const [customFlavourInput, setCustomFlavourInput] = useState('');
   const [submittedFlavour, setSubmittedFlavour] = useState('');
+  const [isCustomFlavourScratched, setIsCustomFlavourScratched] = useState(false);
 
   // Responsive Book Sizing calculation
   useEffect(() => {
@@ -768,13 +769,25 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Left Page Scratch Card Hero */}
-                    <div className="my-auto">
+                    <div className="my-auto w-full space-y-6">
                       <div className="relative aspect-square w-full">
                         <ScratchCard
                           customFlavour={submittedFlavour}
                           isUnlocked={!!submittedFlavour}
                           imageSrc="/assets/empty_jar_img.png"
+                          onScratchComplete={() => setIsCustomFlavourScratched(true)}
                         />
+                      </div>
+
+                      {/* Portfolio Message (Revealed after scratching) */}
+                      <div className={`text-center transition-opacity duration-1000 ${isCustomFlavourScratched ? 'opacity-100' : 'opacity-0'}`}>
+                        <p className="font-serif text-brand-goldLight text-lg sm:text-xl leading-relaxed">
+                          We will try to add the<br />
+                          <span className="font-script text-2xl sm:text-3xl text-brand-gold mt-1 mb-1 inline-block drop-shadow-sm">
+                            "{submittedFlavour}"
+                          </span><br />
+                          in our portfolio.
+                        </p>
                       </div>
                     </div>
 
@@ -805,7 +818,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                         <input
                           type="text"
                           placeholder="Enter your flavour name..."
-                          className="w-full px-4 py-3 rounded-lg border-2 border-brand-roast/20 bg-transparent text-brand-roast font-serif text-lg focus:outline-none focus:border-brand-roast/50 placeholder:text-brand-roast/40 transition-colors"
+                          className="w-full px-4 py-4 rounded-lg border-2 border-brand-roast/20 bg-transparent text-brand-roast font-serif text-xl sm:text-2xl focus:outline-none focus:border-brand-roast/50 placeholder:text-brand-roast/40 transition-colors"
                           value={customFlavourInput}
                           onChange={(e) => setCustomFlavourInput(e.target.value)}
                           onKeyDown={(e) => {

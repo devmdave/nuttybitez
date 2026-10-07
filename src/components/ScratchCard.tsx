@@ -4,9 +4,10 @@ interface ScratchCardProps {
   customFlavour: string;
   isUnlocked: boolean;
   imageSrc: string;
+  onScratchComplete?: () => void;
 }
 
-const ScratchCard: React.FC<ScratchCardProps> = ({ customFlavour, isUnlocked, imageSrc }) => {
+const ScratchCard: React.FC<ScratchCardProps> = ({ customFlavour, isUnlocked, imageSrc, onScratchComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScratched, setIsScratched] = useState(false);
@@ -106,6 +107,7 @@ const ScratchCard: React.FC<ScratchCardProps> = ({ customFlavour, isUnlocked, im
       const percentage = (transparentPixels / (pixels.length / 4)) * 100;
       if (percentage > 40 && !isScratched) {
         setIsScratched(true);
+        if (onScratchComplete) onScratchComplete();
       }
     };
 
@@ -132,20 +134,13 @@ const ScratchCard: React.FC<ScratchCardProps> = ({ customFlavour, isUnlocked, im
   return (
     <div ref={containerRef} className="relative w-full h-full flex items-center justify-center rounded-2xl overflow-hidden border-2 border-brand-gold/50 shadow-luxury bg-brand-cream group">
       {/* Underlying Jar Image */}
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-        <img src={imageSrc} alt="Custom Flavour Jar" className="w-full h-full object-cover img-zoom" />
-        
-        {/* Dynamic Flavour Name Overlay */}
-        {isUnlocked && customFlavour && (
-          <div className="absolute top-[68%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[60%] text-center px-2 py-1 z-10 flex flex-col justify-center items-center">
-            <p className="font-serif text-brand-cream text-lg sm:text-xl md:text-2xl font-bold leading-tight drop-shadow-md break-words w-full" style={{
-              textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3)',
-              transform: 'rotate(-2deg) scaleY(1.1)'
-            }}>
-              {customFlavour.toUpperCase()}
-            </p>
-          </div>
-        )}
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+        {/* Scaling Wrapper */}
+        <div 
+          className="relative w-full h-full hover:scale-105 transition-transform duration-700 ease-out origin-center"
+        >
+          <img src={imageSrc} alt="Custom Flavour Jar" className="w-full h-full object-cover" />
+        </div>
       </div>
       
       {/* Scratch Layer */}
