@@ -70,13 +70,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               
               <p>Then came a simple thought — "Why not create something of our own?"</p>
               
-              <p>What started as a small idea after office hours slowly became Nutty Bitez!</p>
+              <p>What started as a small idea after office hours slowly became <span className="font-parisienne text-[#E6C37A] text-[1.25em] align-baseline brightness-110 [text-shadow:0_0_15px_rgba(230,195,122,0.3),0_0_5px_rgba(230,195,122,0.4)]">Nutty Bitez</span>!</p>
               
               <p>We carry a passion for food and a wish to make everyday snacking a little more exciting.</p>
               
               <p>We began experimenting with flavours, getting feedback from friends and colleagues and are building it one step at a time!</p>
               
-              <p>Today, every Nutty Bitez jar carries a little piece of that journey. <img src="/assets/heart.png" alt="Heart" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" /></p>
+              <p>Today, every <span className="font-parisienne text-[#E6C37A] text-[1.25em] align-baseline brightness-110 [text-shadow:0_0_15px_rgba(230,195,122,0.3),0_0_5px_rgba(230,195,122,0.4)]">Nutty Bitez</span> jar carries a little piece of that journey. <img src="/assets/heart.png" alt="Heart" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" /></p>
               
               <p className="text-[1.1rem] sm:text-[1.15rem] lg:text-[1.25rem] text-[#E6C37A] font-normal tracking-[0.03em] pt-1">
                 And we’re just getting started. <img src="/assets/star.png" alt="Sparkles" className="inline-block h-[1.4em] w-auto align-[-0.25em] object-contain" />

@@ -12,7 +12,7 @@ export const products: Product[] = [
     shortDescription: 'Premium roasted almonds coated in smooth milk chocolate dragée.',
     price: 149,
     originalPrice: 199,
-    weight: '100g',
+    weight: '100gm',
     images: {
       poster: '/assets/original_theme_poster.jpeg',
       jar: '/assets/all_packagings.jpeg',
@@ -42,7 +42,7 @@ export const products: Product[] = [
     shortDescription: 'Refreshing betel paan infused almonds with rose & sweet fennel.',
     price: 149,
     originalPrice: 199,
-    weight: '100g',
+    weight: '100gm',
     images: {
       poster: '/assets/paan_shot_poster.jpeg',
       jar: '/assets/paan_shot_poster.jpeg',
@@ -72,7 +72,7 @@ export const products: Product[] = [
     shortDescription: 'Espresso Arabica dust & creamy tiramisu wrapped around roasted almonds.',
     price: 149,
     originalPrice: 199,
-    weight: '100g',
+    weight: '100gm',
     images: {
       poster: '/assets/coffee_tiramisu_poster.jpeg',
       jar: '/assets/coffee_tiramisu_poster.jpeg',
@@ -102,7 +102,7 @@ export const products: Product[] = [
     shortDescription: '70% bittersweet dark chocolate shell over roasted crunchy almonds.',
     price: 149,
     originalPrice: 199,
-    weight: '100g',
+    weight: '100gm',
     images: {
       poster: '/assets/original_theme_poster.jpeg',
       jar: '/assets/all_packagings.jpeg',
@@ -132,7 +132,7 @@ export const products: Product[] = [
     shortDescription: 'Jumbo roasted cashews dusted in fiery tangy peri peri spice mix.',
     price: 149,
     originalPrice: 199,
-    weight: '100g',
+    weight: '100gm',
     images: {
       poster: '/assets/peri_peri_poster.jpeg',
       jar: '/assets/peri_peri_poster.jpeg',

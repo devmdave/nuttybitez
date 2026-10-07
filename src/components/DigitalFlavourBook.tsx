@@ -438,12 +438,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Editorial Content */}
-                    <div className="space-y-4 mb-auto mt-12">
+                    <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-8 mb-auto">
                       <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        <h3 className="font-serif text-[1.75rem] sm:text-3xl lg:text-4xl font-bold text-brand-roast tracking-tight leading-none">
                           Paan Shot
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
+                        <p className="font-script text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] text-brand-roast mt-4 w-[95%] sm:w-[92%] leading-[1.35] sm:leading-[1.4] text-pretty break-words">
                           A refreshing Indian paan-inspired almond dragée combining aromatic paan flavours, subtle sweetness, and crunchy almonds. A unique, refreshing twist that brings the familiar essence of paan into every bite, remembering “Khaike Paan Banaras Wala”!!
                         </p>
                       </div>
@@ -511,12 +511,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Content */}
-                    <div className="space-y-4 mb-auto mt-12">
+                    <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-8 mb-auto">
                       <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        <h3 className="font-serif text-[1.75rem] sm:text-3xl lg:text-4xl font-bold text-brand-roast tracking-tight leading-none">
                           Coffee Tiramisu
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
+                        <p className="font-script text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] text-brand-roast mt-4 w-[95%] sm:w-[92%] leading-[1.35] sm:leading-[1.4] text-pretty break-words">
                           A delightful blend of rich coffee and tiramisu-inspired flavours wrapped around crunchy almonds. Creamy and indulgent, it’s the perfect pick-me-up for coffee and dessert lovers alike.
                         </p>
                       </div>
@@ -584,12 +584,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 mb-auto mt-12">
+                    <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-8 mb-auto">
                       <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        <h3 className="font-serif text-[1.75rem] sm:text-3xl lg:text-4xl font-bold text-brand-roast tracking-tight leading-none">
                           Choco Crunch
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
+                        <p className="font-script text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] text-brand-roast mt-4 w-[95%] sm:w-[92%] leading-[1.35] sm:leading-[1.4] text-pretty break-words">
                           A rich chocolate-coated almond dragée delivering a satisfying crunch with every bite. Smooth, indulgent chocolate and premium almonds come together for a timeless treat made for chocolate lovers.
                         </p>
                       </div>
@@ -657,12 +657,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 mb-auto mt-12">
+                    <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-8 mb-auto">
                       <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        <h3 className="font-serif text-[1.75rem] sm:text-3xl lg:text-4xl font-bold text-brand-roast tracking-tight leading-none">
                           Rose Petal
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
+                        <p className="font-script text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] text-brand-roast mt-4 w-[95%] sm:w-[92%] leading-[1.35] sm:leading-[1.4] text-pretty break-words">
                           Delicate rose flavours meet crunchy almonds in this elegant dragée, beautifully complemented by real rose-petal notes. Floral, mildly sweet, and irresistibly aromatic, it adds a graceful twist to snacking.
                         </p>
                       </div>
@@ -730,12 +730,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4 mb-auto mt-12">
+                    <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-8 mb-auto">
                       <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-roast tracking-tight">
+                        <h3 className="font-serif text-[1.75rem] sm:text-3xl lg:text-4xl font-bold text-brand-roast tracking-tight leading-none">
                           Royal Kunafa
                         </h3>
-                        <p className="font-script text-xl sm:text-2xl text-brand-roast mt-4 max-w-xs sm:max-w-sm">
+                        <p className="font-script text-[1.15rem] sm:text-[1.35rem] lg:text-[1.5rem] text-brand-roast mt-4 w-[95%] sm:w-[92%] leading-[1.35] sm:leading-[1.4] text-pretty break-words">
                           A royal combination of crunchy almonds, delicate kunafa-inspired flavours, and pistachio goodness. Rich, nutty, and indulgent, this unique dragée transforms the beloved Middle Eastern dessert into an irresistible snack.
                         </p>
                       </div>
