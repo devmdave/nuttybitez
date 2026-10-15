@@ -325,7 +325,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
         <div className="relative max-w-6xl mx-auto flex flex-col items-center">
 
           {/* Stacked Pages Bottom Shadow Base */}
-          <div className="w-full flex justify-center items-center py-4 relative">
+          <div className="w-full flex justify-center items-center pt-4 pb-14 sm:pb-16 md:py-4 relative">
 
             {/* The 3D FlipBook Render */}
             <div className="relative rounded-2xl overflow-visible">
@@ -387,11 +387,6 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
 
                     {/* Cover Footer & Flip Hint */}
                     <div className="text-center space-y-2 pb-3">
-                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-brand-gold/40 bg-brand-dark/90 text-brand-goldLight text-[11px] tracking-wider animate-bounce">
-                        <Compass className="w-3.5 h-3.5" />
-                        <span>Click or Drag Corner to Open</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
                       <p className="text-[9px] uppercase tracking-widest text-brand-cream/50">
                         PREMIUM MUNCHING FOREVER
                       </p>
@@ -895,34 +890,42 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
               </Book3D>
             </div>
 
-            {/* Floating Side Navigation Controls */}
+            {/* Navigation Controls: Floating on sides on desktop (>= md), Positioned beneath book outer corners on mobile (< md) */}
             <button
               onClick={handlePrev}
-              className="absolute top-1/2 p-2.5 sm:p-3 rounded-full border border-brand-gold/35 bg-brand-dark/85 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 ease-in-out z-50 shadow-luxury focus:outline-none"
+              className="absolute p-2 sm:p-2.5 md:p-3 rounded-full border border-brand-gold/35 bg-brand-dark/90 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 ease-in-out z-50 shadow-luxury focus:outline-none"
               style={{
-                left: windowWidth >= 768 ? '50%' : '12px',
+                top: windowWidth >= 768 ? '50%' : 'auto',
+                bottom: windowWidth >= 768 ? 'auto' : '8px',
+                left: windowWidth >= 768
+                  ? '50%'
+                  : `max(12px, calc(50% - ${bookDimensions.width / 2}px))`,
                 transform: windowWidth >= 768
                   ? `translate(calc(-50% - ${(currentSpread === 0 || currentSpread === totalSpreads) ? bookDimensions.width / 2 + 36 : bookDimensions.width + 36}px), -50%)`
-                  : 'translateY(-50%)'
+                  : 'none'
               }}
               aria-label="Previous Page"
             >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </button>
 
             <button
               onClick={handleNext}
-              className="absolute top-1/2 p-2.5 sm:p-3 rounded-full border border-brand-gold/35 bg-brand-dark/85 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 ease-in-out z-50 shadow-luxury focus:outline-none"
+              className="absolute p-2 sm:p-2.5 md:p-3 rounded-full border border-brand-gold/35 bg-brand-dark/90 text-brand-goldLight hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 ease-in-out z-50 shadow-luxury focus:outline-none"
               style={{
-                right: windowWidth >= 768 ? 'auto' : '12px',
+                top: windowWidth >= 768 ? '50%' : 'auto',
+                bottom: windowWidth >= 768 ? 'auto' : '8px',
                 left: windowWidth >= 768 ? '50%' : 'auto',
+                right: windowWidth >= 768
+                  ? 'auto'
+                  : `max(12px, calc(50% - ${bookDimensions.width / 2}px))`,
                 transform: windowWidth >= 768
                   ? `translate(calc(-50% + ${(currentSpread === 0 || currentSpread === totalSpreads) ? bookDimensions.width / 2 + 36 : bookDimensions.width + 36}px), -50%)`
-                  : 'translateY(-50%)'
+                  : 'none'
               }}
               aria-label="Next Page"
             >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </button>
 
           </div>
