@@ -32,7 +32,7 @@ export const QuickViewModal: React.FC = () => {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.94 }}
-          className="relative max-w-3xl w-full bg-brand-espresso border border-brand-gold/30 rounded-3xl p-6 sm:p-8 text-brand-cream shadow-2xl z-10 overflow-hidden"
+          className="relative max-w-2xl w-full bg-brand-espresso border border-brand-gold/30 rounded-2xl p-5 sm:p-7 text-brand-cream shadow-2xl z-10 overflow-hidden"
         >
           {/* Close button */}
           <button

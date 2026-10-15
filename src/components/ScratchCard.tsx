@@ -38,7 +38,7 @@ const ScratchCard: React.FC<ScratchCardProps> = ({ customFlavour, isUnlocked, im
       }
       
       // Text
-      ctx.font = 'bold 24px serif';
+      ctx.font = 'bold 18px serif';
       ctx.fillStyle = '#fff';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';

@@ -27,24 +27,24 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate }) => {
   });
 
   return (
-    <div className="pt-28 pb-24 bg-brand-dark min-h-screen text-brand-cream">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 bg-brand-dark min-h-screen text-brand-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs uppercase tracking-[0.3em] font-bold text-brand-goldLight block">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-2.5">
+          <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-bold text-brand-goldLight block">
             ARTISANAL SELECTION
           </span>
-          <h1 className="font-serif text-5xl sm:text-7xl font-bold text-brand-cream">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-cream">
             THE NUTTYBITEZ STORE
           </h1>
-          <p className="text-brand-cream/70 text-lg font-light">
+          <p className="text-brand-cream/70 text-sm sm:text-base font-light">
             Handcrafted almond dragées and roasted spiced cashews. Sealed fresh in signature 100g glass jars.
           </p>
         </div>
 
         {/* Category Tabs & Filter Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-12 border-b border-brand-gold/20">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-8 sm:mb-10 border-b border-brand-gold/20">
           
           {/* Categories */}
           <div className="flex flex-wrap gap-2">
@@ -52,7 +52,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate }) => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all ${
+                className={`px-4 py-2 rounded-full text-xs uppercase tracking-widest font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-gold-gradient text-brand-dark shadow-gold-glow scale-105'
                     : 'bg-brand-espresso border border-brand-gold/20 text-brand-cream/70 hover:text-brand-cream'
@@ -64,12 +64,12 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Sort selector */}
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-2.5 text-xs">
             <span className="text-brand-cream/60">Sort by:</span>
             <select
               value={sortBy}
               onChange={(e: any) => setSortBy(e.target.value)}
-              className="bg-brand-espresso border border-brand-gold/30 rounded-lg px-3 py-2 text-brand-cream focus:outline-none focus:border-brand-gold cursor-pointer"
+              className="bg-brand-espresso border border-brand-gold/30 rounded-lg px-2.5 py-1.5 text-brand-cream focus:outline-none focus:border-brand-gold cursor-pointer"
             >
               <option value="featured">Featured Collection</option>
               <option value="price-low">Price: Low to High</option>
@@ -80,11 +80,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate }) => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {sortedProducts.map((product) => (
             <div
               key={product.id}
-              className="group rounded-3xl bg-brand-espresso/80 border border-brand-gold/25 p-6 backdrop-blur-md hover:border-brand-gold/50 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
+              className="group rounded-2xl bg-brand-espresso/80 border border-brand-gold/25 p-5 backdrop-blur-md hover:border-brand-gold/50 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Image Container */}

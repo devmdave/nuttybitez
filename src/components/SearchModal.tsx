@@ -47,7 +47,7 @@ export const SearchModal: React.FC = () => {
           </div>
 
           {/* Search Input */}
-          <div className="py-8">
+          <div className="py-5 sm:py-6">
             <div className="relative">
               <input
                 type="text"
@@ -55,7 +55,7 @@ export const SearchModal: React.FC = () => {
                 placeholder="Search by flavour, ingredient (e.g. Paan, Coffee, Peri Peri, Cashews)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-4 rounded-2xl bg-brand-espresso border-2 border-brand-gold/40 text-lg font-serif text-brand-cream placeholder:font-sans placeholder:text-sm placeholder:text-brand-cream/40 focus:outline-none focus:border-brand-gold shadow-2xl"
+                className="w-full px-5 py-3.5 rounded-xl bg-brand-espresso border-2 border-brand-gold/40 text-base font-serif text-brand-cream placeholder:font-sans placeholder:text-sm placeholder:text-brand-cream/40 focus:outline-none focus:border-brand-gold shadow-2xl"
               />
               {searchQuery && (
                 <button

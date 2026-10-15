@@ -81,32 +81,33 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
   };
 
   return (
-    <section id="contact" className="pt-8 pb-10 sm:pt-10 sm:pb-16 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-brand-dark text-brand-cream relative overflow-hidden select-none border-t border-brand-gold/15">
 
       {/* Ambient Background & Texture */}
       <div className="absolute inset-0 opacity-10 bg-dark-paper pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-9 lg:gap-12">
+      <div className="w-full px-4 sm:px-6 md:pl-56 lg:pl-64 xl:pl-72 2xl:pl-80 md:pr-6 lg:pr-8 xl:pr-12 relative z-10">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-8 lg:gap-10">
 
         {/* Business Enquiry Form */}
         <div className="w-full max-w-3xl lg:max-w-none lg:flex-1">
-          <div className="p-7 sm:p-12 rounded-3xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
+          <div className="p-6 sm:p-8 lg:p-9 rounded-2xl bg-brand-espresso/50 border border-brand-gold/20 shadow-2xl backdrop-blur-md">
 
-            <div className="mb-6 sm:mb-8 space-y-2 text-center sm:text-left">
-              <h3 className="font-serif text-4xl sm:text-5xl font-bold text-brand-cream tracking-tight">
+            <div className="mb-5 sm:mb-7 space-y-1.5 text-center sm:text-left">
+              <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-cream tracking-tight">
                 Send us a Message
               </h3>
-              <p className="text-brand-cream/80 text-sm sm:text-base font-light leading-relaxed">
+              <p className="text-brand-cream/80 text-xs sm:text-sm font-light leading-relaxed">
                 Have a question about our dragées, corporate gifting, or wholesale orders? Fill in your details below.
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-10 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-4">
-                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto animate-bounce" />
-                <h4 className="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Thank You!</h4>
-                <p className="text-base sm:text-lg text-brand-cream/80 max-w-md mx-auto font-light">
+              <div className="p-8 sm:p-10 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-center space-y-3.5">
+                <CheckCircle2 className="w-12 h-12 sm:w-14 sm:h-14 text-emerald-400 mx-auto animate-bounce" />
+                <h4 className="font-serif text-2xl sm:text-3xl font-bold text-brand-cream">Thank You!</h4>
+                <p className="text-sm sm:text-base text-brand-cream/80 max-w-md mx-auto font-light">
                   Your enquiry has been received. Our concierge team will reach out to you on WhatsApp / Email within 24 hours.
                 </p>
                 <button
@@ -115,25 +116,25 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                     setFormData({ name: '', email: '', phone: '', message: '' });
                     setErrors({});
                   }}
-                  className="mt-4 px-10 py-3.5 rounded-full text-sm uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient hover:brightness-110 transition-all shadow-md cursor-pointer"
+                  className="mt-3 px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold text-brand-dark bg-gold-gradient hover:brightness-110 transition-all shadow-md cursor-pointer"
                 >
                   Send Another Enquiry
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="space-y-6 sm:space-y-7">
+              <form onSubmit={handleSubmit} noValidate className="space-y-4 sm:space-y-5">
 
                 {/* Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                    <label className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-brand-cream/90 font-semibold block">
                       Full Name *
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => handleChange('name', e.target.value)}
-                      className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.name
+                      className={`w-full px-3.5 py-3 rounded-xl bg-brand-dark/70 border text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.name
                         ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                         : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                         }`}
@@ -148,14 +149,14 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                    <label className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-brand-cream/90 font-semibold block">
                       Phone / WhatsApp *
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => handleChange('phone', e.target.value)}
-                      className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.phone
+                      className={`w-full px-3.5 py-3 rounded-xl bg-brand-dark/70 border text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.phone
                         ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                         : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                         }`}
@@ -172,14 +173,14 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                  <label className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-brand-cream/90 font-semibold block">
                     Email Address *
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleChange('email', e.target.value)}
-                    className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.email
+                    className={`w-full px-3.5 py-3 rounded-xl bg-brand-dark/70 border text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all ${errors.email
                       ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                       : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                       }`}
@@ -195,14 +196,14 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
                 {/* Message */}
                 <div className="space-y-1.5">
-                  <label className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-brand-cream/90 font-semibold block">
+                  <label className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-brand-cream/90 font-semibold block">
                     Message *
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     value={formData.message}
                     onChange={(e) => handleChange('message', e.target.value)}
-                    className={`w-full px-4 py-3.5 rounded-xl bg-brand-dark/70 border text-sm sm:text-base text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all resize-none ${errors.message
+                    className={`w-full px-3.5 py-3 rounded-xl bg-brand-dark/70 border text-sm text-brand-cream placeholder:text-brand-cream/30 focus:outline-none transition-all resize-none ${errors.message
                       ? 'border-rose-500/70 focus:border-rose-500 ring-1 ring-rose-500/30'
                       : 'border-brand-gold/25 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/30'
                       }`}
@@ -219,9 +220,9 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full h-[72px] rounded-full text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-4"
+                  className="w-full h-12 sm:h-13 py-3 rounded-full text-xs sm:text-[13px] uppercase tracking-[0.16em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-3"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4" />
                   <span>Submit Enquiry</span>
                 </button>
 
@@ -232,17 +233,17 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
         </div>
 
         {/* 4 Contact Information Tiles */}
-        <div className="w-full max-w-3xl lg:max-w-xs xl:max-w-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 shrink-0">
+        <div className="w-full max-w-3xl lg:max-w-xs xl:max-w-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-3.5 shrink-0">
 
           {/* Phone / WhatsApp */}
           <a
             href="https://wa.me/918488971879"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3.5 p-4 rounded-2xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
+            className="flex items-center gap-3 p-3.5 rounded-xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
           >
-            <div className="w-10 h-10 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform shrink-0 shadow-md">
-              <MessageCircle className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform shrink-0 shadow-md">
+              <MessageCircle className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <span className="text-[9px] uppercase tracking-widest text-brand-goldLight/80 font-bold block truncate">
@@ -259,10 +260,10 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
             href="https://instagram.com/nuttybitez"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3.5 p-4 rounded-2xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
+            className="flex items-center gap-3 p-3.5 rounded-xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
           >
-            <div className="w-10 h-10 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight group-hover:scale-105 transition-transform shrink-0 shadow-md">
-              <Instagram className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight group-hover:scale-105 transition-transform shrink-0 shadow-md">
+              <Instagram className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <span className="text-[9px] uppercase tracking-widest text-brand-goldLight/80 font-bold block truncate">
@@ -277,10 +278,10 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           {/* Email Enquiries */}
           <a
             href="mailto:hello@nuttybitez.com"
-            className="flex items-center gap-3.5 p-4 rounded-2xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
+            className="flex items-center gap-3 p-3.5 rounded-xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
           >
-            <div className="w-10 h-10 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight group-hover:scale-105 transition-transform shrink-0 shadow-md">
-              <Mail className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight group-hover:scale-105 transition-transform shrink-0 shadow-md">
+              <Mail className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <span className="text-[9px] uppercase tracking-widest text-brand-goldLight/80 font-bold block truncate">
@@ -293,9 +294,9 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           </a>
 
           {/* Brand Origin & Location */}
-          <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-brand-espresso/50 border border-brand-gold/20 shadow-lg backdrop-blur-md">
-            <div className="w-10 h-10 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight shrink-0 shadow-md">
-              <MapPin className="w-5 h-5" />
+          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-brand-espresso/50 border border-brand-gold/20 shadow-lg backdrop-blur-md">
+            <div className="w-9 h-9 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight shrink-0 shadow-md">
+              <MapPin className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <span className="text-[9px] uppercase tracking-widest text-brand-goldLight/80 font-bold block truncate">
@@ -308,8 +309,8 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
           </div>
 
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
   );
 };

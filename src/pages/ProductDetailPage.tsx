@@ -21,24 +21,24 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
   };
 
   return (
-    <div className="pt-28 pb-24 bg-brand-dark min-h-screen text-brand-cream">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 bg-brand-dark min-h-screen text-brand-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Back navigation */}
         <button
           onClick={() => onNavigate('/shop')}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-goldLight hover:text-brand-gold transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-brand-goldLight hover:text-brand-gold transition-colors mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Products Store</span>
         </button>
 
         {/* Product Details Hero Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
           
           {/* Left Gallery */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="aspect-square rounded-3xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl bg-brand-espresso">
+            <div className="aspect-square rounded-2xl overflow-hidden border-2 border-brand-gold/40 shadow-2xl bg-brand-espresso">
               <img
                 src={product.images.poster}
                 alt={product.name}
@@ -47,11 +47,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
             </div>
 
             {/* Thumbnail Row */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3.5">
               {[product.images.poster, product.images.jar, product.images.ingredients].map((img, idx) => (
                 <div
                   key={idx}
-                  className="aspect-square rounded-xl overflow-hidden border border-brand-gold/30 bg-brand-dark cursor-pointer hover:border-brand-gold"
+                  className="aspect-square rounded-lg overflow-hidden border border-brand-gold/30 bg-brand-dark cursor-pointer hover:border-brand-gold"
                 >
                   <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
                 </div>
@@ -60,34 +60,34 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
           </div>
 
           {/* Right Product Specifications */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-5">
             
             {/* Tagline */}
             <div>
-              <span className="text-xs uppercase tracking-[0.3em] font-bold text-brand-gold block mb-1">
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-bold text-brand-gold block mb-1">
                 {product.category} • {product.weight} Jar
               </span>
-              <h1 className="font-serif text-4xl sm:text-6xl font-bold text-brand-cream">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-cream">
                 {product.name}
               </h1>
-              <p className="font-script text-2xl text-brand-goldLight mt-1">
+              <p className="font-script text-xl sm:text-2xl text-brand-goldLight mt-0.5">
                 {product.flavour}
               </p>
             </div>
 
             {/* Description */}
-            <p className="text-brand-cream/80 text-base leading-relaxed font-light">
+            <p className="text-brand-cream/80 text-sm sm:text-base leading-relaxed font-light">
               {product.description}
             </p>
 
             {/* Pricing Card */}
-            <div className="p-6 rounded-2xl bg-brand-espresso border border-brand-gold/30 flex items-center justify-between">
+            <div className="p-4 sm:p-5 rounded-xl bg-brand-espresso border border-brand-gold/30 flex items-center justify-between">
               <div>
                 <span className="text-[10px] uppercase tracking-widest text-brand-cream/60 block">Introductory Offer</span>
-                <div className="flex items-baseline gap-3">
-                  <span className="font-serif text-4xl font-bold text-brand-goldLight">₹{product.price}</span>
-                  <span className="text-sm line-through text-brand-cream/40">₹{product.originalPrice}</span>
-                  <span className="px-2 py-0.5 rounded bg-brand-gold text-brand-dark text-[10px] font-bold uppercase">
+                <div className="flex items-baseline gap-2.5">
+                  <span className="font-serif text-3xl sm:text-4xl font-bold text-brand-goldLight">₹{product.price}</span>
+                  <span className="text-xs line-through text-brand-cream/40">₹{product.originalPrice}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-brand-gold text-brand-dark text-[10px] font-bold uppercase">
                     Save ₹{product.originalPrice - product.price}
                   </span>
                 </div>
@@ -96,30 +96,30 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
             </div>
 
             {/* Quantity Counter & Action Buttons */}
-            <div className="space-y-4 pt-2">
-              <div className="flex items-center gap-4">
+            <div className="space-y-3.5 pt-1">
+              <div className="flex items-center gap-3">
                 <span className="text-xs uppercase tracking-widest text-brand-cream/70 font-semibold">Quantity:</span>
-                <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-brand-espresso border border-brand-gold/30">
+                <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-espresso border border-brand-gold/30">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="hover:text-brand-gold text-brand-cream"
                   >
-                    <Minus className="w-4 h-4" />
+                    <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="w-6 text-center font-bold font-serif text-lg text-brand-cream">{quantity}</span>
+                  <span className="w-6 text-center font-bold font-serif text-base text-brand-cream">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="hover:text-brand-gold text-brand-cream"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <button
                   onClick={() => addToCart(product, quantity)}
-                  className="w-full py-4 rounded-full text-xs uppercase tracking-[0.2em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-transform transform hover:scale-102"
+                  className="w-full py-3.5 rounded-full text-xs uppercase tracking-[0.18em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-transform transform hover:scale-102"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add to Cart (₹{product.price * quantity})</span>
@@ -127,7 +127,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
 
                 <button
                   onClick={handleBuyNow}
-                  className="w-full py-4 rounded-full text-xs uppercase tracking-[0.2em] font-semibold text-brand-cream border border-brand-gold/40 hover:bg-brand-roast flex items-center justify-center gap-2 transition-colors"
+                  className="w-full py-3.5 rounded-full text-xs uppercase tracking-[0.18em] font-semibold text-brand-cream border border-brand-gold/40 hover:bg-brand-roast flex items-center justify-center gap-2 transition-colors"
                 >
                   <span>Buy Now Instant</span>
                 </button>
