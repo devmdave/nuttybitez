@@ -343,54 +343,35 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 {/* ==========================================
                     PAGE 0: FRONT COVER (HARDCOVER)
                 ========================================== */}
-                <Page density="hard" className="bg-brand-dark shadow-2xl border-4 border-brand-gold/50">
-                  <div
-                    className="w-full h-full p-6 sm:p-8 flex flex-col justify-between relative bg-cover bg-center text-brand-cream"
-                    style={{ backgroundImage: `linear-gradient(rgba(26, 14, 10, 0.75), rgba(36, 21, 15, 0.85)), url('/assets/book_cover_leather.png')` }}
-                  >
-                    {/* Gold Foil Filigree Corner Frames */}
-                    <div className="absolute top-3.5 left-3.5 w-8 h-8 border-t-2 border-l-2 border-brand-gold" />
-                    <div className="absolute top-3.5 right-3.5 w-8 h-8 border-t-2 border-r-2 border-brand-gold" />
-                    <div className="absolute bottom-3.5 left-3.5 w-8 h-8 border-b-2 border-l-2 border-brand-gold" />
-                    <div className="absolute bottom-3.5 right-3.5 w-8 h-8 border-b-2 border-r-2 border-brand-gold" />
+                <Page density="hard" className="bg-[#160B07] shadow-2xl border border-brand-gold/30">
+                  <div className="w-full h-full p-6 sm:p-8 flex flex-col items-center justify-center relative bg-gradient-to-b from-[#1c0d08] via-[#160B07] to-[#110603] text-brand-cream overflow-hidden select-none">
+                    
+                    {/* Minimalist Inset Gold Border Frame */}
+                    <div className="absolute inset-4 sm:inset-5 border border-brand-gold/25 rounded-sm pointer-events-none" />
+                    <div className="absolute inset-5 sm:inset-6 border border-brand-gold/10 rounded-sm pointer-events-none" />
 
-                    {/* Cover Top Header */}
-                    <div className="text-center pt-4 space-y-1.5">
-                      <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.28em] font-bold text-brand-goldLight gold-foil-emboss">
-                        PREMIUM MUNCHING FOREVER
-                      </span>
-                      <div className="w-10 h-[1px] bg-brand-gold/60 mx-auto" />
-                    </div>
+                    {/* Subtle Warm Amber Center Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
 
-                    {/* Cover Center Title & Emblem */}
-                    <div className="text-center space-y-4 my-auto px-3">
-                      <div className="w-18 h-18 sm:w-20 sm:h-20 mx-auto rounded-full border-2 border-brand-gold/60 p-1.5 shadow-gold-glow bg-brand-dark/80 flex items-center justify-center">
+                    {/* Center Focal Point: Logo + Tagline */}
+                    <div className="relative z-10 flex flex-col items-center text-center px-4 space-y-4 sm:space-y-5">
+                      
+                      {/* Logo Medallion */}
+                      <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1.5 bg-gradient-to-br from-brand-gold/30 via-brand-gold/10 to-transparent border border-brand-gold/40 shadow-[0_8px_25px_rgba(0,0,0,0.6),0_0_20px_rgba(199,154,74,0.15)] flex items-center justify-center">
                         <img
                           src="/assets/logo.jpeg"
                           alt="NuttyBitez Logo"
-                          className="w-full h-full object-contain rounded-full border border-brand-gold/40"
+                          className="w-full h-full object-cover rounded-full"
                         />
                       </div>
 
-                      <div className="space-y-1.5">
-                        <h1 className="font-serif text-2xl sm:text-3.5xl font-bold tracking-wider text-gold-shine">
-                          NUTTYBITEZ
-                        </h1>
-                        <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-brand-cream/80">
-                          Digital Flavour Book
-                        </p>
-                        <p className="font-serif italic text-xs text-brand-goldLight/90">
-                          Volume I • First Edition
-                        </p>
-                      </div>
+                      {/* Brand Tagline */}
+                      <p className="text-[10px] sm:text-[11.5px] uppercase tracking-[0.3em] font-medium text-brand-goldLight/90">
+                        Premium Munching Forever
+                      </p>
+
                     </div>
 
-                    {/* Cover Footer & Flip Hint */}
-                    <div className="text-center space-y-2 pb-3">
-                      <p className="text-[9px] uppercase tracking-widest text-brand-cream/50">
-                        PREMIUM MUNCHING FOREVER
-                      </p>
-                    </div>
                   </div>
                 </Page>
 
@@ -429,7 +410,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     SPREAD 2: PAAN SHOT (RIGHT: PAGE 4)
                 ========================================== */}
                 <Page density="hard" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                  <div className="w-full h-full p-4 sm:p-6 lg:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-2.5 text-[9px] uppercase font-serif tracking-widest text-brand-roast/70">
@@ -438,12 +419,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Editorial Content */}
-                    <div className="flex-1 flex flex-col justify-start mt-4 sm:mt-6 mb-auto">
+                    <div className="flex-1 flex flex-col justify-start mt-2 sm:mt-5 lg:mt-6 mb-auto overflow-hidden sm:overflow-visible">
                       <div>
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-none">
+                        <h3 className="font-serif text-[2.25rem] sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-[1.08] sm:leading-tight">
                           Paan Shot
                         </h3>
-                        <p className="font-script text-[1.05rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-3 sm:mt-4 w-[95%] sm:w-[92%] leading-[1.3] sm:leading-[1.35] text-pretty break-words">
+                        <p className="font-script text-[1.18125rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-1.5 sm:mt-3.5 lg:mt-4 w-full sm:w-[92%] leading-[1.28] sm:leading-[1.3] lg:leading-[1.35] text-pretty break-words">
                           A refreshing Indian paan-inspired almond dragée combining aromatic paan flavours, subtle sweetness, and crunchy almonds. A unique, refreshing twist that brings the familiar essence of paan into every bite, remembering “Khaike Paan Banaras Wala”!!
                         </p>
                       </div>
@@ -451,7 +432,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Price & Cart Actions */}
-                    <div className="pt-3 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-xs uppercase text-brand-roast/60 font-bold block mb-0.5">Net Weight {paanShot.weight}</span>
                         <div className="flex items-baseline gap-2">
@@ -498,7 +479,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     SPREAD 2: COFFEE TIRAMISU (RIGHT: PAGE 4)
                 ========================================== */}
                 <Page density="hard" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                  <div className="w-full h-full p-4 sm:p-6 lg:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-2.5 text-[9px] uppercase font-serif tracking-widest text-brand-roast/70">
@@ -507,12 +488,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Right Page Content */}
-                    <div className="flex-1 flex flex-col justify-start mt-4 sm:mt-6 mb-auto">
+                    <div className="flex-1 flex flex-col justify-start mt-2 sm:mt-5 lg:mt-6 mb-auto overflow-hidden sm:overflow-visible">
                       <div>
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-none">
+                        <h3 className="font-serif text-[2.25rem] sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-[1.08] sm:leading-tight">
                           Coffee Tiramisu
                         </h3>
-                        <p className="font-script text-[1.05rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-3 sm:mt-4 w-[95%] sm:w-[92%] leading-[1.3] sm:leading-[1.35] text-pretty break-words">
+                        <p className="font-script text-[1.18125rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-1.5 sm:mt-3.5 lg:mt-4 w-full sm:w-[92%] leading-[1.28] sm:leading-[1.3] lg:leading-[1.35] text-pretty break-words">
                           A delightful blend of rich coffee and tiramisu-inspired flavours wrapped around crunchy almonds. Creamy and indulgent, it’s the perfect pick-me-up for coffee and dessert lovers alike.
                         </p>
                       </div>
@@ -520,7 +501,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Price & Cart Actions */}
-                    <div className="pt-3 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-xs uppercase text-brand-roast/60 font-bold block mb-0.5">Net Weight {coffeeTiramisu.weight}</span>
                         <div className="flex items-baseline gap-2">
@@ -567,7 +548,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     SPREAD 3: CHOCO CRUNCH (RIGHT: PAGE 6)
                 ========================================== */}
                 <Page density="hard" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                  <div className="w-full h-full p-4 sm:p-6 lg:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-2.5 text-[9px] uppercase font-serif tracking-widest text-brand-roast/70">
@@ -576,12 +557,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 flex flex-col justify-start mt-4 sm:mt-6 mb-auto">
+                    <div className="flex-1 flex flex-col justify-start mt-2 sm:mt-5 lg:mt-6 mb-auto overflow-hidden sm:overflow-visible">
                       <div>
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-none">
+                        <h3 className="font-serif text-[2.25rem] sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-[1.08] sm:leading-tight">
                           Choco Crunch
                         </h3>
-                        <p className="font-script text-[1.05rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-3 sm:mt-4 w-[95%] sm:w-[92%] leading-[1.3] sm:leading-[1.35] text-pretty break-words">
+                        <p className="font-script text-[1.18125rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-1.5 sm:mt-3.5 lg:mt-4 w-full sm:w-[92%] leading-[1.28] sm:leading-[1.3] lg:leading-[1.35] text-pretty break-words">
                           A rich chocolate-coated almond dragée delivering a satisfying crunch with every bite. Smooth, indulgent chocolate and premium almonds come together for a timeless treat made for chocolate lovers.
                         </p>
                       </div>
@@ -589,7 +570,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Price & Cart Actions */}
-                    <div className="pt-3 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-xs uppercase text-brand-roast/60 font-bold block mb-0.5">Net Weight {chocoCrunch.weight}</span>
                         <div className="flex items-baseline gap-2">
@@ -636,7 +617,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     SPREAD 4: DARK CHOCOLATE (RIGHT: PAGE 8)
                 ========================================== */}
                 <Page density="hard" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                  <div className="w-full h-full p-4 sm:p-6 lg:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-2.5 text-[9px] uppercase font-serif tracking-widest text-brand-roast/70">
@@ -645,12 +626,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 flex flex-col justify-start mt-4 sm:mt-6 mb-auto">
+                    <div className="flex-1 flex flex-col justify-start mt-2 sm:mt-5 lg:mt-6 mb-auto overflow-hidden sm:overflow-visible">
                       <div>
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-none">
+                        <h3 className="font-serif text-[2.25rem] sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-[1.08] sm:leading-tight">
                           Rose Petal
                         </h3>
-                        <p className="font-script text-[1.05rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-3 sm:mt-4 w-[95%] sm:w-[92%] leading-[1.3] sm:leading-[1.35] text-pretty break-words">
+                        <p className="font-script text-[1.18125rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-1.5 sm:mt-3.5 lg:mt-4 w-full sm:w-[92%] leading-[1.28] sm:leading-[1.3] lg:leading-[1.35] text-pretty break-words">
                           Delicate rose flavours meet crunchy almonds in this elegant dragée, beautifully complemented by real rose-petal notes. Floral, mildly sweet, and irresistibly aromatic, it adds a graceful twist to snacking.
                         </p>
                       </div>
@@ -658,7 +639,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Price & Cart Actions */}
-                    <div className="pt-3 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-xs uppercase text-brand-roast/60 font-bold block mb-0.5">Net Weight {darkChocolate.weight}</span>
                         <div className="flex items-baseline gap-2">
@@ -705,7 +686,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     SPREAD 5: PERI PERI CASHEW (RIGHT: PAGE 10)
                 ========================================== */}
                 <Page density="hard" className="paper-inner-crease-right">
-                  <div className="w-full h-full p-5 sm:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
+                  <div className="w-full h-full p-4 sm:p-6 lg:p-7 flex flex-col justify-between text-brand-roast relative bg-paper-texture">
 
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-brand-roast/20 pb-2.5 text-[9px] uppercase font-serif tracking-widest text-brand-roast/70">
@@ -714,12 +695,12 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 flex flex-col justify-start mt-4 sm:mt-6 mb-auto">
+                    <div className="flex-1 flex flex-col justify-start mt-2 sm:mt-5 lg:mt-6 mb-auto overflow-hidden sm:overflow-visible">
                       <div>
-                        <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-none">
+                        <h3 className="font-serif text-[2.25rem] sm:text-2xl lg:text-[1.75rem] font-bold text-brand-roast tracking-tight leading-[1.08] sm:leading-tight">
                           Royal Kunafa
                         </h3>
-                        <p className="font-script text-[1.05rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-3 sm:mt-4 w-[95%] sm:w-[92%] leading-[1.3] sm:leading-[1.35] text-pretty break-words">
+                        <p className="font-script text-[1.18125rem] sm:text-[1.15rem] lg:text-[1.22rem] text-brand-roast mt-1.5 sm:mt-3.5 lg:mt-4 w-full sm:w-[92%] leading-[1.28] sm:leading-[1.3] lg:leading-[1.35] text-pretty break-words">
                           A royal combination of crunchy almonds, delicate kunafa-inspired flavours, and pistachio goodness. Rich, nutty, and indulgent, this unique dragée transforms the beloved Middle Eastern dessert into an irresistible snack.
                         </p>
                       </div>
@@ -727,7 +708,7 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                     </div>
 
                     {/* Price & Cart Actions */}
-                    <div className="pt-3 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
+                    <div className="pt-2.5 sm:pt-4 border-t border-brand-roast/20 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-xs uppercase text-brand-roast/60 font-bold block mb-0.5">Net Weight {periPeriCashew.weight}</span>
                         <div className="flex items-baseline gap-2">
@@ -832,58 +813,47 @@ export const DigitalFlavourBook: React.FC<DigitalFlavourBookProps> = ({ onNaviga
                 {/* ==========================================
                     PAGE 14: BACK COVER (HARDCOVER)
                 ========================================== */}
-                <Page density="hard" className="bg-brand-dark shadow-2xl border-4 border-brand-gold/50">
-                  <div
-                    className="w-full h-full p-6 sm:p-8 flex flex-col justify-between relative bg-cover bg-center text-brand-cream"
-                    style={{ backgroundImage: `linear-gradient(rgba(26, 14, 10, 0.8), rgba(36, 21, 15, 0.9)), url('/assets/book_cover_leather.png')` }}
-                  >
-                    {/* Gold Foil Filigree Corner Frames */}
-                    <div className="absolute top-3.5 left-3.5 w-8 h-8 border-t-2 border-l-2 border-brand-gold" />
-                    <div className="absolute top-3.5 right-3.5 w-8 h-8 border-t-2 border-r-2 border-brand-gold" />
-                    <div className="absolute bottom-3.5 left-3.5 w-8 h-8 border-b-2 border-l-2 border-brand-gold" />
-                    <div className="absolute bottom-3.5 right-3.5 w-8 h-8 border-b-2 border-r-2 border-brand-gold" />
+                <Page density="hard" className="bg-[#160B07] shadow-2xl border border-brand-gold/30">
+                  <div className="w-full h-full p-6 sm:p-8 flex flex-col items-center justify-center relative bg-gradient-to-b from-[#1c0d08] via-[#160B07] to-[#110603] text-brand-cream overflow-hidden select-none">
+                    
+                    {/* Minimalist Inset Gold Border Frame */}
+                    <div className="absolute inset-4 sm:inset-5 border border-brand-gold/25 rounded-sm pointer-events-none" />
+                    <div className="absolute inset-5 sm:inset-6 border border-brand-gold/10 rounded-sm pointer-events-none" />
 
-                    {/* Back Cover Header */}
-                    <div className="text-center pt-4 space-y-1">
-                      <span className="text-[9px] uppercase tracking-[0.28em] font-bold text-brand-goldLight">
-                        End of Edition Vol. I
-                      </span>
-                      <div className="w-10 h-[1px] bg-brand-gold/50 mx-auto" />
-                    </div>
+                    {/* Subtle Warm Amber Center Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
 
-                    {/* Back Cover Center Branding */}
-                    <div className="text-center space-y-3 my-auto px-3">
-                      <div className="w-16 h-16 mx-auto rounded-full border border-brand-gold/40 p-1.5 shadow-gold-glow bg-brand-dark/80 flex items-center justify-center">
+                    {/* Center Composition: Logo + Tagline + Subtle Reopen Action */}
+                    <div className="relative z-10 flex flex-col items-center text-center px-4 space-y-4 sm:space-y-5">
+                      
+                      {/* Logo Medallion (Matching Front Cover) */}
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1.5 bg-gradient-to-br from-brand-gold/30 via-brand-gold/10 to-transparent border border-brand-gold/40 shadow-[0_8px_25px_rgba(0,0,0,0.6),0_0_20px_rgba(199,154,74,0.15)] flex items-center justify-center">
                         <img
                           src="/assets/logo.jpeg"
                           alt="NuttyBitez Seal"
-                          className="w-full h-full object-contain rounded-full"
+                          className="w-full h-full object-cover rounded-full"
                         />
                       </div>
 
-                      <h2 className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-gold-shine">
-                        NUTTYBITEZ
-                      </h2>
-                      <p className="font-serif italic text-[11px] sm:text-xs text-brand-cream/80 leading-relaxed max-w-xs mx-auto">
-                        "Crafted with relentless passion for true food lovers & gourmet connoisseurs."
+                      {/* Brand Tagline */}
+                      <p className="text-[10px] sm:text-[11.5px] uppercase tracking-[0.3em] font-medium text-brand-goldLight/90">
+                        Premium Munching Forever
                       </p>
 
-                      <div className="pt-1.5">
+                      {/* Minimal, Restrained Return Action */}
+                      <div className="pt-2">
                         <button
                           onClick={() => turnToPage(0)}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-brand-gold/40 bg-brand-dark/80 text-brand-goldLight text-xs tracking-wider hover:bg-brand-roast transition-all"
+                          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-brand-gold/30 bg-brand-dark/60 text-brand-goldLight/90 text-[10px] uppercase tracking-[0.2em] hover:border-brand-gold/60 hover:bg-brand-roast/60 hover:text-brand-cream transition-all duration-300 cursor-pointer shadow-sm"
+                          aria-label="Reopen Book"
                         >
                           <RotateCcw className="w-3 h-3" />
                           <span>Reopen Cover</span>
                         </button>
                       </div>
+
                     </div>
 
-                    {/* Back Cover Footer */}
-                    <div className="text-center space-y-1.5 pb-3 text-[9px] text-brand-cream/60 tracking-widest">
-                      <p>© {new Date().getFullYear()} NuttyBitez • All Rights Reserved</p>
-                      <p className="font-mono text-[8.5px] text-brand-gold/60">ISBN 978-0-999-NUTTYBITEZ-1</p>
-                    </div>
                   </div>
                 </Page>
 

@@ -14,6 +14,8 @@ interface FormErrors {
 
 export const ContactSection: React.FC<ContactSectionProps> = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,10 +75,35 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
+    setServerError(null);
+    if (!validate()) return;
+
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        // Surface field-level errors from server if available
+        if (data.fields) {
+          setErrors((prev) => ({ ...prev, ...data.fields }));
+        }
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
       setSubmitted(true);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      setServerError(message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -113,6 +140,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 <button
                   onClick={() => {
                     setSubmitted(false);
+                    setServerError(null);
                     setFormData({ name: '', email: '', phone: '', message: '' });
                     setErrors({});
                   }}
@@ -123,6 +151,14 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-4 sm:space-y-5">
+
+                {/* Server-level error banner */}
+                {serverError && (
+                  <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-rose-950/50 border border-rose-500/30 text-sm text-rose-300">
+                    <AlertCircle className="w-4 h-4 mt-0.5 shrink-0 text-rose-400" />
+                    <span>{serverError}</span>
+                  </div>
+                )}
 
                 {/* Name & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
@@ -220,10 +256,23 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full h-12 sm:h-13 py-3 rounded-full text-xs sm:text-[13px] uppercase tracking-[0.16em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-3"
+                  disabled={isLoading}
+                  className="w-full h-12 sm:h-13 py-3 rounded-full text-xs sm:text-[13px] uppercase tracking-[0.16em] font-bold text-brand-dark bg-gold-gradient shadow-gold-glow hover:brightness-110 flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer mt-3 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Enquiry</span>
+                  {isLoading ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z" />
+                      </svg>
+                      <span>Sending…</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Submit Enquiry</span>
+                    </>
+                  )}
                 </button>
 
               </form>
