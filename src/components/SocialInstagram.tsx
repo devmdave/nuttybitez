@@ -4,9 +4,9 @@ import { Instagram, MessageCircle } from 'lucide-react';
 export const SocialInstagram: React.FC = () => {
   const posts = [
     { image: '/assets/original_theme_poster.jpeg', likes: '1.4k', caption: 'Four Flavours. Endless Indulgence.' },
-    { image: '/assets/paan_shot_poster.jpeg', likes: '980', caption: 'Paan Shot: Fresh betel leaf & white chocolate dragée' },
-    { image: '/assets/coffee_tiramisu_poster.jpeg', likes: '1.2k', caption: 'Coffee Tiramisu: Arabica coffee dust & creamy cocoa' },
-    { image: '/assets/peri_peri_poster.jpeg', likes: '890', caption: 'Peri Peri Cashew: Fiery birdseye chili spiced cashews' },
+    { image: '/assets/prodcut_images/paan_shot_jar_img.png', likes: '980', caption: 'Paan Shot: Fresh betel leaf & white chocolate dragée' },
+    { image: '/assets/prodcut_images/coffee_tiramisu_jar_img.jpeg', likes: '1.2k', caption: 'Coffee Tiramisu: Arabica coffee dust & creamy cocoa' },
+    { image: '/assets/peri_peri_cashews_hero_1789678016585.png', likes: '890', caption: 'Peri Peri Cashew: Fiery birdseye chili spiced cashews' },
     { image: '/assets/all_packagings.jpeg', likes: '2.1k', caption: 'The complete NuttyBitez 100g Jar Collection' },
     { image: '/assets/hero_ingredients_bg_1789677986247.png', likes: '1.1k', caption: 'California almonds slow-roasted to golden perfection' }
   ];

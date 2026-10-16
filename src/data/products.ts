@@ -44,8 +44,8 @@ export const products: Product[] = [
     originalPrice: 199,
     weight: '100gm',
     images: {
-      poster: '/assets/paan_shot_poster.jpeg',
-      jar: '/assets/paan_shot_poster.jpeg',
+      poster: '/assets/prodcut_images/paan_shot_jar_img.png',
+      jar: '/assets/prodcut_images/paan_shot_jar_img.png',
       ingredients: '/assets/paan_ingredients_1789678003258.png'
     },
     ingredients: ['California Almonds', 'White Chocolate', 'Betel Leaf Extract', 'Saunf (Fennel)', 'Pink Rose Petals', 'Meetha Masala'],
@@ -74,9 +74,9 @@ export const products: Product[] = [
     originalPrice: 199,
     weight: '100gm',
     images: {
-      poster: '/assets/coffee_tiramisu_poster.jpeg',
-      jar: '/assets/coffee_tiramisu_poster.jpeg',
-      ingredients: '/assets/hero_ingredients_bg_1789677986247.png'
+      poster: '/assets/prodcut_images/coffee_tiramisu_jar_img.jpeg',
+      jar: '/assets/prodcut_images/coffee_tiramisu_jar_img.jpeg',
+      ingredients: '/assets/coffee_tiramisu_ingredients.png'
     },
     ingredients: ['California Almonds', 'Arabica Coffee Extract', 'Tiramisu Cream White Chocolate', 'Cocoa Powder', 'Mascarpone Notes'],
     tasteNotes: ['Smooth', 'Creamy', 'Irresistible'],
@@ -134,8 +134,8 @@ export const products: Product[] = [
     originalPrice: 199,
     weight: '100gm',
     images: {
-      poster: '/assets/peri_peri_poster.jpeg',
-      jar: '/assets/peri_peri_poster.jpeg',
+      poster: '/assets/peri_peri_cashews_hero_1789678016585.png',
+      jar: '/assets/all_packagings.jpeg',
       ingredients: '/assets/peri_peri_cashews_hero_1789678016585.png'
     },
     ingredients: ['Jumbo Cashews', 'Peri Peri Spice Mix (Birdseye Chili, Paprika, Garlic, Onion)', 'Himalayan Pink Salt', 'Lemon Zest', 'Cold-pressed Oil'],

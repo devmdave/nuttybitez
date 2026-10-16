@@ -17,7 +17,7 @@ const moments = [
     icon: Coffee,
     pairing: 'Coffee Tiramisu Dragées',
     tagline: 'Re-energize your afternoon with Arabica coffee dust and sweet tiramisu cream.',
-    image: '/assets/coffee_tiramisu_poster.jpeg'
+    image: '/assets/prodcut_images/coffee_tiramisu_jar_img.jpeg'
   },
   {
     id: 'road-trip',
@@ -25,7 +25,7 @@ const moments = [
     icon: Car,
     pairing: 'Peri Peri Cashew Snacks',
     tagline: 'Keep cravings at bay on long drives with spicy, crunchy roasted cashews.',
-    image: '/assets/peri_peri_poster.jpeg'
+    image: '/assets/peri_peri_cashews_hero_1789678016585.png'
   },
   {
     id: 'after-dinner',
@@ -33,7 +33,7 @@ const moments = [
     icon: Moon,
     pairing: 'Paan Shot Dragées',
     tagline: 'The ultimate royal mouth-freshener dragée infused with rose and sweet betel paan.',
-    image: '/assets/paan_shot_poster.jpeg'
+    image: '/assets/prodcut_images/paan_shot_jar_img.png'
   },
   {
     id: 'gifting',
