@@ -326,7 +326,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
 
           {/* Email Enquiries */}
           <a
-            href="mailto:hello@nuttybitez.com"
+            href="mailto:enquiries.nuttybitez@gmail.com"
             className="flex items-center gap-3 p-3.5 rounded-xl bg-brand-espresso/50 border border-brand-gold/20 hover:bg-brand-roast/40 transition-all shadow-lg backdrop-blur-md group"
           >
             <div className="w-9 h-9 rounded-full bg-brand-dark border border-brand-gold/40 flex items-center justify-center text-brand-goldLight group-hover:scale-105 transition-transform shrink-0 shadow-md">
@@ -337,7 +337,7 @@ export const ContactSection: React.FC<ContactSectionProps> = () => {
                 Email Concierge
               </span>
               <span className="text-xs font-semibold text-brand-cream group-hover:text-brand-goldLight transition-colors block truncate">
-                hello@nuttybitez.com
+                enquiries.nuttybitez@gmail.com
               </span>
             </div>
           </a>
