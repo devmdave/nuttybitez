@@ -10,6 +10,61 @@
     color: #F4E7CF;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
+}
+
+/* Global Cursor & Selection Configuration:
+   - Disable text-selection I-beam cursor and text selection globally across non-input content.
+   - Show normal arrow cursor everywhere, including non-interactive text, containers, and buttons.
+   - Retain user-select: text and cursor: text strictly inside input fields, textareas, and editable content.
+*/
+*,
+*::before,
+*::after {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html,
+body,
+button,
+[role="button"],
+a,
+select,
+summary,
+.cursor-pointer {
+  cursor: default;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+[contenteditable=""] {
+  cursor: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="color"],
+input[type="range"] {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@layer base {
 
   h1,
   h2,
